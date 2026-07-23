@@ -1,0 +1,1 @@
+FAIZER3D, Sistema de Gestão; Sistema desenvolvido para gerenciar a empresa FAIZER3D. Com funcionalidades planejadas como cadastro de clientes, cadastro de produtos, controle de orçamentos, controle de pedidos, controle financeiro, controle de estoque, e relatórios.

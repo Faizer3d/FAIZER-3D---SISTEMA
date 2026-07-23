@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Controle de Estoque | Faizer 3D</title>
+
+    <link rel="stylesheet" href="../style.css">
+</head>
+
+<body class="pagina-estoque">
+
+    <main class="estoque-container">
+
+        <header class="estoque-cabecalho">
+
+            <div>
+
+                <h1>Controle de Estoque</h1>
+
+                <p>
+                    Gerencie filamentos, materiais e insumos da Faizer 3D.
+                </p>
+
+            </div>
+
+            <a
+                href="../index.html"
+                class="botao-voltar"
+            >
+                ← Voltar ao menu
+            </a>
+
+        </header>
+
+        <section class="estoque-cards">
+
+            <article class="estoque-card">
+
+                <p>Materiais cadastrados</p>
+
+                <strong id="totalMateriais">
+                    0
+                </strong>
+
+            </article>
+
+            <article class="estoque-card">
+
+                <p>Estoque baixo</p>
+
+                <strong id="totalEstoqueBaixo">
+                    0
+                </strong>
+
+            </article>
+
+            <article class="estoque-card">
+
+                <p>Materiais esgotados</p>
+
+                <strong id="totalEsgotados">
+                    0
+                </strong>
+
+            </article>
+
+            <article class="estoque-card">
+
+                <p>Valor em estoque</p>
+
+                <strong id="valorTotalEstoqueMateriais">
+                    R$ 0,00
+                </strong>
+
+            </article>
+
+        </section>
+
+        <form id="formEstoque">
+
+            <section class="estoque-bloco">
+
+                <h2>Cadastro de material</h2>
+
+                <div class="estoque-linha">
+
+                    <div class="estoque-campo">
+
+                        <label for="codigoMaterial">
+                            Código
+                        </label>
+
+                        <input
+                            type="text"
+                            id="codigoMaterial"
+                            placeholder="Ex.: PLA-001"
+                            required
+                        >
+
+                    </div>
+
+                    <div class="estoque-campo">
+
+                        <label for="nomeMaterial">
+                            Nome do material
+                        </label>
+
+                        <input
+                            type="text"
+                            id="nomeMaterial"
+                            placeholder="Ex.: PLA Branco"
+                            required
+                        >
+
+                    </div>
+
+                    <div class="estoque-campo">
+
+                        <label for="categoriaMaterial">
+                            Categoria
+                        </label>
+
+                        <select
+                            id="categoriaMaterial"
+                            required
+                        >
+
+                            <option value="">
+                                Selecione
+                            </option>
+
+                            <option value="Filamento PLA">
+                                Filamento PLA
+                            </option>
+
+                            <option value="Filamento PETG">
+                                Filamento PETG
+                            </option>
+
+                            <option value="Filamento TPU">
+                                Filamento TPU
+                            </option>
+
+                            <option value="Resina">
+                                Resina
+                            </option>
+
+                            <option value="Embalagem">
+                                Embalagem
+                            </option>
+
+                            <option value="Ímã">
+                                Ímã
+                            </option>
+
+                            <option value="Parafuso">
+                                Parafuso
+                            </option>
+
+                            <option value="Chaveiro">
+                                Chaveiro
+                            </option>
+
+                            <option value="Etiqueta">
+                                Etiqueta
+                            </option>
+
+                            <option value="Outros">
+                                Outros
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+                <div class="estoque-linha">
+
+                    <div class="estoque-campo">
+
+                        <label for="corMaterial">
+                            Cor
+                        </label>
+
+                        <input
+                            type="text"
+                            id="corMaterial"
+                            placeholder="Ex.: Branco"
+                        >
+
+                    </div>
+
+                    <div class="estoque-campo">
+
+                        <label for="marcaMaterial">
+                            Marca
+                        </label>
+
+                        <input
+                            type="text"
+                            id="marcaMaterial"
+                            placeholder="Ex.: Voolt"
+                        >
+
+                    </div>
+
+                    <div class="estoque-campo">
+
+                        <label for="fornecedorMaterial">
+                            Fornecedor
+                        </label>
+
+                        <input
+                            type="text"
+                            id="fornecedorMaterial"
+                            placeholder="Ex.: Loja de Filamentos"
+                        >
+
+                    </div>
+
+                </div>
+
+                <div class="estoque-linha">
+
+                    <div class="estoque-campo">
+
+                        <label for="quantidadeMaterial">
+                            Quantidade atual
+                        </label>
+
+                        <input
+                            type="number"
+                            id="quantidadeMaterial"
+                            min="0"
+                            step="0.01"
+                            value="0"
+                            required
+                        >
+
+                    </div>
+
+                    <div class="estoque-campo">
+
+                        <label for="unidadeMaterial">
+                            Unidade
+                        </label>
+
+                        <select
+                            id="unidadeMaterial"
+                            required
+                        >
+
+                            <option value="g">
+                                Gramas
+                            </option>
+
+                            <option value="kg">
+                                Quilogramas
+                            </option>
+
+                            <option value="un">
+                                Unidade
+                            </option>
+
+                            <option value="ml">
+                                Mililitros
+                            </option>
+
+                            <option value="l">
+                                Litros
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                    <div class="estoque-campo">
+
+                        <label for="estoqueMinimoMaterial">
+                            Estoque mínimo
+                        </label>
+
+                        <input
+                            type="number"
+                            id="estoqueMinimoMaterial"
+                            min="0"
+                            step="0.01"
+                            value="0"
+                            required
+                        >
+
+                    </div>
+
+                </div>
+
+                <div class="estoque-linha">
+
+                    <div class="estoque-campo">
+
+                        <label for="custoUnitarioMaterial">
+                            Custo por unidade
+                        </label>
+
+                        <input
+                            type="number"
+                            id="custoUnitarioMaterial"
+                            min="0"
+                            step="0.01"
+                            value="0.00"
+                            required
+                        >
+
+                    </div>
+
+                    <div class="estoque-campo">
+
+                        <label for="dataCompraMaterial">
+                            Data da compra
+                        </label>
+
+                        <input
+                            type="date"
+                            id="dataCompraMaterial"
+                        >
+
+                    </div>
+
+                </div>
+
+                <div class="estoque-campo">
+
+                    <label for="observacoesMaterial">
+                        Observações
+                    </label>
+
+                    <textarea
+                        id="observacoesMaterial"
+                        placeholder="Informações adicionais sobre o material..."
+                    ></textarea>
+
+                </div>
+
+                <button
+                    type="submit"
+                    id="btnSalvarMaterial"
+                    class="botao-estoque"
+                >
+                    Salvar material
+                </button>
+
+            </section>
+
+        </form>
+
+        <section class="estoque-bloco">
+
+            <div class="estoque-lista-cabecalho">
+
+                <div>
+
+                    <h2>Materiais cadastrados</h2>
+
+                    <p>
+                        Consulte, edite e acompanhe o estoque dos insumos.
+                    </p>
+
+                </div>
+
+                <select id="filtroSituacaoEstoque">
+
+                    <option value="">
+                        Todas as situações
+                    </option>
+
+                    <option value="normal">
+                        Estoque normal
+                    </option>
+
+                    <option value="baixo">
+                        Estoque baixo
+                    </option>
+
+                    <option value="esgotado">
+                        Esgotado
+                    </option>
+
+                </select>
+
+            </div>
+
+            <input
+                type="search"
+                id="pesquisaEstoque"
+                placeholder="Pesquisar por código, nome, categoria, cor ou marca..."
+            >
+
+            <div class="tabela-estoque-wrapper">
+
+                <table class="tabela-estoque">
+
+                    <thead>
+
+                        <tr>
+                            <th>Código</th>
+                            <th>Material</th>
+                            <th>Categoria</th>
+                            <th>Cor</th>
+                            <th>Quantidade</th>
+                            <th>Mínimo</th>
+                            <th>Situação</th>
+                            <th>Valor</th>
+                            <th>Ações</th>
+                        </tr>
+
+                    </thead>
+
+                    <tbody id="listaEstoque">
+
+                        <tr>
+
+                            <td colspan="9">
+                                Nenhum material cadastrado.
+                            </td>
+
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+    </main>
+
+    <script src="../estoque.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Controle de Pedidos | Faizer 3D</title>
+
+    <link rel="stylesheet" href="../style.css">
+</head>
+
+<body class="pagina-pedidos">
+
+    <main class="pedidos-container">
+
+        <header class="pedidos-cabecalho">
+
+            <div>
+
+                <h1>Controle de Pedidos</h1>
+
+                <p>
+                    Acompanhe a produção e a entrega dos pedidos.
+                </p>
+
+            </div>
+
+            <a
+                href="../index.html"
+                class="botao-voltar"
+            >
+                ← Voltar ao menu
+            </a>
+
+        </header>
+
+        <form id="formPedido">
+
+            <section class="pedido-bloco">
+
+                <h2>Dados do pedido</h2>
+
+                <div class="pedido-linha">
+
+                    <div class="pedido-campo">
+
+                        <label for="numeroPedido">
+                            Número
+                        </label>
+
+                        <input
+                            type="text"
+                            id="numeroPedido"
+                            readonly
+                        >
+
+                    </div>
+
+                    <div class="pedido-campo">
+
+                        <label for="dataPedido">
+                            Data do pedido
+                        </label>
+
+                        <input
+                            type="date"
+                            id="dataPedido"
+                            required
+                        >
+
+                    </div>
+
+                    <div class="pedido-campo">
+
+                        <label for="dataEntrega">
+                            Previsão de entrega
+                        </label>
+
+                        <input
+                            type="date"
+                            id="dataEntrega"
+                            required
+                        >
+
+                    </div>
+
+                </div>
+
+                <div class="pedido-linha">
+
+                    <div class="pedido-campo">
+
+                        <label for="clientePedido">
+                            Cliente
+                        </label>
+
+                        <select
+                            id="clientePedido"
+                            required
+                        >
+
+                            <option value="">
+                                Selecione um cliente
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                    <div class="pedido-campo">
+
+                        <label for="statusPedido">
+                            Status
+                        </label>
+
+                        <select
+                            id="statusPedido"
+                            required
+                        >
+
+                            <option value="Aguardando">
+                                Aguardando
+                            </option>
+
+                            <option value="Em impressão">
+                                Em impressão
+                            </option>
+
+                            <option value="Pós-processo">
+                                Pós-processo
+                            </option>
+
+                            <option value="Pintura">
+                                Pintura
+                            </option>
+
+                            <option value="Finalizado">
+                                Finalizado
+                            </option>
+
+                            <option value="Entregue">
+                                Entregue
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+            <section class="pedido-bloco">
+
+                <h2>Adicionar produto</h2>
+
+                <div class="pedido-linha">
+
+                    <div class="pedido-campo">
+
+                        <label for="produtoPedido">
+                            Produto
+                        </label>
+
+                        <select id="produtoPedido">
+
+                            <option value="">
+                                Selecione um produto
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                    <div class="pedido-campo">
+
+                        <label for="quantidadePedido">
+                            Quantidade
+                        </label>
+
+                        <input
+                            type="number"
+                            id="quantidadePedido"
+                            min="1"
+                            value="1"
+                        >
+
+                    </div>
+
+                    <div class="pedido-campo">
+
+                        <label for="valorPedido">
+                            Valor unitário
+                        </label>
+
+                        <input
+                            type="number"
+                            id="valorPedido"
+                            min="0"
+                            step="0.01"
+                            value="0.00"
+                        >
+
+                    </div>
+
+                </div>
+
+                <button
+                    type="button"
+                    id="btnAdicionarItemPedido"
+                    class="botao-pedido"
+                >
+                    Adicionar produto
+                </button>
+
+            </section>
+
+            <section class="pedido-bloco">
+
+                <h2>Itens do pedido</h2>
+
+                <div class="tabela-pedido-wrapper">
+
+                    <table class="tabela-pedido">
+
+                        <thead>
+
+                            <tr>
+                                <th>Produto</th>
+                                <th>Quantidade</th>
+                                <th>Valor unitário</th>
+                                <th>Subtotal</th>
+                                <th>Ações</th>
+                            </tr>
+
+                        </thead>
+
+                        <tbody id="listaItensPedido">
+
+                            <tr id="pedidoSemItens">
+
+                                <td colspan="5">
+                                    Nenhum produto adicionado.
+                                </td>
+
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </section>
+
+            <section class="pedido-bloco">
+
+                <h2>Resumo do pedido</h2>
+
+                <div class="pedido-linha">
+
+                    <div class="pedido-campo">
+
+                        <label for="descontoPedido">
+                            Desconto
+                        </label>
+
+                        <input
+                            type="number"
+                            id="descontoPedido"
+                            min="0"
+                            step="0.01"
+                            value="0.00"
+                        >
+
+                    </div>
+
+                    <div class="pedido-campo">
+
+                        <label for="fretePedido">
+                            Frete
+                        </label>
+
+                        <input
+                            type="number"
+                            id="fretePedido"
+                            min="0"
+                            step="0.01"
+                            value="0.00"
+                        >
+
+                    </div>
+
+                </div>
+
+                <div class="pedido-resumo">
+
+                    <p>
+                        Subtotal:
+                        <strong id="subtotalPedido">
+                            R$ 0,00
+                        </strong>
+                    </p>
+
+                    <p>
+                        Desconto:
+                        <strong id="resumoDescontoPedido">
+                            R$ 0,00
+                        </strong>
+                    </p>
+
+                    <p>
+                        Frete:
+                        <strong id="resumoFretePedido">
+                            R$ 0,00
+                        </strong>
+                    </p>
+
+                    <p class="pedido-total">
+
+                        Total:
+
+                        <strong id="totalPedido">
+                            R$ 0,00
+                        </strong>
+
+                    </p>
+
+                </div>
+
+            </section>
+
+            <section class="pedido-bloco">
+
+                <div class="pedido-campo">
+
+                    <label for="observacoesPedido">
+                        Observações
+                    </label>
+
+                    <textarea
+                        id="observacoesPedido"
+                        placeholder="Informações sobre produção, acabamento, cor ou entrega..."
+                    ></textarea>
+
+                </div>
+
+            </section>
+
+            <div class="pedido-acoes">
+
+                <button
+                    type="submit"
+                    class="botao-pedido"
+                >
+                    Salvar pedido
+                </button>
+
+            </div>
+
+        </form>
+
+        <section class="pedido-bloco lista-pedidos-salvos">
+
+            <div class="pedidos-lista-cabecalho">
+
+                <div>
+
+                    <h2>Pedidos cadastrados</h2>
+
+                    <p>
+                        Consulte, edite e acompanhe todos os pedidos.
+                    </p>
+
+                </div>
+
+                <select id="filtroStatusPedido">
+
+                    <option value="">
+                        Todos os status
+                    </option>
+
+                    <option value="Aguardando">
+                        Aguardando
+                    </option>
+
+                    <option value="Em impressão">
+                        Em impressão
+                    </option>
+
+                    <option value="Pós-processo">
+                        Pós-processo
+                    </option>
+
+                    <option value="Pintura">
+                        Pintura
+                    </option>
+
+                    <option value="Finalizado">
+                        Finalizado
+                    </option>
+
+                    <option value="Entregue">
+                        Entregue
+                    </option>
+
+                </select>
+
+            </div>
+
+            <input
+                type="search"
+                id="pesquisaPedido"
+                placeholder="Pesquisar por número ou cliente..."
+            >
+
+            <div class="tabela-pedido-wrapper">
+
+                <table class="tabela-pedido">
+
+                    <thead>
+
+                        <tr>
+                            <th>Número</th>
+                            <th>Cliente</th>
+                            <th>Data</th>
+                            <th>Entrega</th>
+                            <th>Status</th>
+                            <th>Total</th>
+                            <th>Ações</th>
+                        </tr>
+
+                    </thead>
+
+                    <tbody id="listaPedidosSalvos">
+
+                        <tr>
+
+                            <td colspan="7">
+                                Nenhum pedido cadastrado.
+                            </td>
+
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+    </main>
+
+    <script src="../pedidos.js"></script>
+
+</body>
+
+</html>

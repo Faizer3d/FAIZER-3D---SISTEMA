@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>FAIZER3D - Sistema de Gestão</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="dashboard-container">
+
+        <aside class="dashboard-menu">
+
+            <div class="dashboard-marca">
+
+                <h1>
+                    FAIZER<span>3D</span>
+                </h1>
+
+                <h2>Sistema de Gestão</h2>
+
+                <p>
+                    Bem-vindo ao sistema da FAIZER3D.
+                </p>
+
+            </div>
+
+            <nav>
+
+                <ul>
+
+                    <li>
+                        <a href="index.html">
+                            Início
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="pages/clientes.html">
+                            Cadastro de Clientes
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="pages/produtos.html">
+                            Cadastro de Produtos
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="pages/catalogo.html">
+                            Catálogo de Produtos
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="pages/orcamentos.html">
+    Orçamentos
+</a>
+                    </li>
+
+                    <li>
+                        <a href="pages/pedidos.html">
+    Controle de Pedidos
+</a>
+                    </li>
+
+                    <li>
+                        <a href="pages/financeiro.html">
+    Controle Financeiro
+</a>
+                    </li>
+
+                    <li>
+                        <a href="pages/estoque.html">
+    Controle de Estoque
+</a>
+                    </li>
+
+                    <li>
+                        <a href="#">
+                            Relatórios
+                        </a>
+                    </li>
+
+                </ul>
+
+            </nav>
+
+        </aside>
+
+        <main class="dashboard-conteudo">
+
+            <header class="dashboard-cabecalho">
+
+                <div>
+
+                    <h2>Painel de Controle</h2>
+
+                    <p>
+                        Acompanhe os principais dados da sua empresa.
+                    </p>
+
+                </div>
+
+                <img
+                    src="logo.jpeg"
+                    class="dashboard-logo"
+                    alt="Logo da FAIZER3D"
+                >
+
+            </header>
+
+            <section class="dashboard-cards">
+
+                <article class="dashboard-card">
+
+                    <span class="dashboard-card-icone">
+                        👥
+                    </span>
+
+                    <div>
+
+                        <p>Clientes cadastrados</p>
+
+                        <strong id="totalClientes">
+                            0
+                        </strong>
+
+                    </div>
+
+                </article>
+
+                <article class="dashboard-card">
+
+                    <span class="dashboard-card-icone">
+                        📦
+                    </span>
+
+                    <div>
+
+                        <p>Produtos cadastrados</p>
+
+                        <strong id="totalProdutos">
+                            0
+                        </strong>
+
+                    </div>
+
+                </article>
+
+                <article class="dashboard-card">
+
+                    <span class="dashboard-card-icone">
+                        🧩
+                    </span>
+
+                    <div>
+
+                        <p>Peças em estoque</p>
+
+                        <strong id="totalEstoque">
+                            0
+                        </strong>
+
+                    </div>
+
+                </article>
+
+                <article class="dashboard-card">
+
+                    <span class="dashboard-card-icone">
+                        💰
+                    </span>
+
+                    <div>
+
+                        <p>Valor do estoque</p>
+
+                        <strong id="valorEstoque">
+                            R$ 0,00
+                        </strong>
+
+                    </div>
+
+                </article>
+
+            </section>
+
+<!-- PRODUÇÃO DE HOJE -->
+
+<section class="dashboard-producao">
+
+    <div class="dashboard-secao-titulo">
+
+        <div>
+
+            <h2>Produção de Hoje</h2>
+
+            <p>
+                Pedidos em andamento e entregas importantes.
+            </p>
+
+        </div>
+
+        <a href="pages/pedidos.html"
+           class="dashboard-botao">
+
+            Ver pedidos
+
+        </a>
+
+    </div>
+
+    <div
+        id="producaoHoje"
+        class="producao-hoje-grid">
+
+    </div>
+
+    <div
+        id="producaoHojeVazia"
+        class="dashboard-vazio"
+        hidden>
+
+        Nenhum pedido em produção ou com entrega próxima.
+
+    </div>
+
+</section>
+
+<!-- PRODUTOS CADASTRADOS -->
+
+<section class="dashboard-secao">
+
+                <div class="dashboard-secao-titulo">
+
+                    <div>
+
+                        <h2>Produtos cadastrados</h2>
+
+                        <p>
+                            Últimos produtos adicionados ao sistema.
+                        </p>
+
+                    </div>
+
+                    <a
+                        href="pages/produtos.html"
+                        class="dashboard-botao"
+                    >
+                        Novo produto
+                    </a>
+
+                </div>
+
+                <div
+                    id="dashboardProdutos"
+                    class="dashboard-produtos"
+                >
+                </div>
+
+                <div
+                    id="dashboardSemProdutos"
+                    class="dashboard-vazio"
+                    hidden
+                >
+                    Nenhum produto cadastrado.
+                </div>
+
+            </section>
+
+        </main>
+
+    </div>
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>

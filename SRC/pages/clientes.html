@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Cadastro de Clientes | FAIZER3D</title>
+
+    <link
+        rel="stylesheet"
+        href="../style.css"
+    >
+</head>
+
+<body>
+
+    <main class="pagina-clientes">
+
+        <h1>Cadastro de Clientes</h1>
+
+        <a
+            href="../index.html"
+            class="voltar"
+        >
+            ← Voltar ao Menu
+        </a>
+
+        <form id="formCliente">
+
+            <div class="linha">
+
+                <div class="campo">
+
+                    <label for="nome">
+                        Nome / Razão Social
+                    </label>
+
+                    <input
+                        type="text"
+                        id="nome"
+                        autocomplete="name"
+                        required
+                    >
+
+                </div>
+
+                <div class="campo">
+
+                    <label for="cpfCnpj">
+                        CPF / CNPJ
+                    </label>
+
+                    <input
+                        type="text"
+                        id="cpfCnpj"
+                        inputmode="numeric"
+                        autocomplete="off"
+                        required
+                    >
+
+                </div>
+
+            </div>
+
+            <div class="linha">
+
+                <div class="campo">
+
+                    <label for="telefone">
+                        Telefone
+                    </label>
+
+                    <input
+                        type="text"
+                        id="telefone"
+                        inputmode="tel"
+                        autocomplete="tel"
+                    >
+
+                </div>
+
+                <div class="campo">
+
+                    <label for="email">
+                        E-mail
+                    </label>
+
+                    <input
+                        type="email"
+                        id="email"
+                        autocomplete="email"
+                    >
+
+                </div>
+
+            </div>
+
+            <div class="linha">
+
+                <div class="campo">
+
+                    <label for="cep">
+                        CEP
+                    </label>
+
+                    <input
+                        type="text"
+                        id="cep"
+                        inputmode="numeric"
+                        autocomplete="postal-code"
+                    >
+
+                </div>
+
+                <div class="campo endereco">
+
+                    <label for="endereco">
+                        Endereço
+                    </label>
+
+                    <input
+                        type="text"
+                        id="endereco"
+                        autocomplete="street-address"
+                    >
+
+                </div>
+
+            </div>
+
+            <div class="linha">
+
+                <div class="campo">
+
+                    <label for="numero">
+                        Número
+                    </label>
+
+                    <input
+                        type="text"
+                        id="numero"
+                    >
+
+                </div>
+
+                <div class="campo">
+
+                    <label for="bairro">
+                        Bairro
+                    </label>
+
+                    <input
+                        type="text"
+                        id="bairro"
+                    >
+
+                </div>
+
+            </div>
+
+            <div class="linha">
+
+                <div class="campo">
+
+                    <label for="cidade">
+                        Cidade
+                    </label>
+
+                    <input
+                        type="text"
+                        id="cidade"
+                        autocomplete="address-level2"
+                    >
+
+                </div>
+
+                <div class="campo">
+
+                    <label for="estado">
+                        Estado
+                    </label>
+
+                    <input
+                        type="text"
+                        id="estado"
+                        maxlength="2"
+                        autocomplete="address-level1"
+                    >
+
+                </div>
+
+            </div>
+
+            <div class="linha">
+
+                <div class="campo observacao">
+
+                    <label for="observacao">
+                        Observações
+                    </label>
+
+                    <textarea
+                        id="observacao"
+                        rows="4"
+                    ></textarea>
+
+                </div>
+
+            </div>
+
+            <button
+                type="submit"
+                class="btnSalvar"
+            >
+                Salvar Cliente
+            </button>
+
+        </form>
+
+        <hr>
+
+        <h2>Pesquisar Cliente</h2>
+
+        <input
+            type="search"
+            id="pesquisa"
+            placeholder="Digite o nome, CPF/CNPJ, telefone ou cidade..."
+            autocomplete="off"
+        >
+
+        <hr>
+
+        <h2>Clientes Cadastrados</h2>
+
+        <div class="tabela-clientes-wrapper">
+
+            <table id="tabelaClientes">
+
+                <thead>
+
+                    <tr>
+                        <th>Nome</th>
+                        <th>CPF/CNPJ</th>
+                        <th>Telefone</th>
+                        <th>Cidade</th>
+                        <th>Ações</th>
+                    </tr>
+
+                </thead>
+
+                <tbody id="listaClientes">
+
+                    <tr>
+                        <td
+                            colspan="5"
+                            style="text-align: center;"
+                        >
+                            Nenhum cliente encontrado.
+                        </td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </main>
+
+    <script src="../clientes.js"></script>
+
+</body>
+
+</html>

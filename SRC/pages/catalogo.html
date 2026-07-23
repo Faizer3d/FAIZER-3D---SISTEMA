@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Catálogo de Produtos | Faizer 3D</title>
+
+    <link rel="stylesheet" href="../style.css">
+</head>
+
+<body class="pagina-catalogo">
+
+    <main class="catalogo-container">
+
+        <header class="catalogo-cabecalho">
+            <div>
+                <h1>Catálogo de Produtos</h1>
+
+                <p>
+                    Conheça nossos produtos personalizados em impressão 3D.
+                </p>
+            </div>
+
+            <a href="../index.html" class="botao-voltar">
+                ← Voltar ao menu
+            </a>
+        </header>
+
+        <section class="catalogo-filtros">
+
+            <input
+                type="search"
+                id="pesquisaCatalogo"
+                placeholder="Pesquisar produto ou categoria..."
+                autocomplete="off"
+            >
+
+            <select id="filtroCategoria">
+                <option value="">Todas as categorias</option>
+            </select>
+
+        </section>
+
+        <section
+            id="listaCatalogo"
+            class="catalogo-grid"
+        >
+            <!-- Os produtos serão inseridos pelo JavaScript -->
+        </section>
+
+        <div
+            id="catalogoVazio"
+            class="catalogo-vazio"
+            hidden
+        >
+            <h2>Nenhum produto encontrado</h2>
+
+            <p>
+                Cadastre um produto para ele aparecer no catálogo.
+            </p>
+        </div>
+
+    </main>
+
+    <script src="../catalogo.js"></script>
+</body>
+</html>

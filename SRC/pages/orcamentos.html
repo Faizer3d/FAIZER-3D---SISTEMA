@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Orçamentos | Faizer 3D</title>
+
+    <link rel="stylesheet" href="../style.css">
+</head>
+
+<body class="pagina-orcamentos">
+
+    <main class="orcamentos-container">
+
+        <header class="orcamentos-cabecalho">
+
+            <div>
+
+                <h1>Orçamentos</h1>
+
+                <p>
+                    Crie e organize os orçamentos da Faizer 3D.
+                </p>
+
+            </div>
+
+            <a
+                href="../index.html"
+                class="botao-voltar"
+            >
+                ← Voltar ao menu
+            </a>
+
+        </header>
+
+        <form id="formOrcamento">
+
+            <section class="orcamento-bloco">
+
+                <h2>Dados do orçamento</h2>
+
+                <div class="orcamento-linha">
+
+                    <div class="orcamento-campo">
+
+                        <label for="numeroOrcamento">
+                            Número
+                        </label>
+
+                        <input
+                            type="text"
+                            id="numeroOrcamento"
+                            readonly
+                        >
+
+                    </div>
+
+                    <div class="orcamento-campo">
+
+                        <label for="dataOrcamento">
+                            Data
+                        </label>
+
+                        <input
+                            type="date"
+                            id="dataOrcamento"
+                            required
+                        >
+
+                    </div>
+
+                    <div class="orcamento-campo">
+
+                        <label for="validadeOrcamento">
+                            Validade
+                        </label>
+
+                        <input
+                            type="date"
+                            id="validadeOrcamento"
+                            required
+                        >
+
+                    </div>
+
+                </div>
+
+                <div class="orcamento-linha">
+
+                    <div class="orcamento-campo">
+
+                        <label for="clienteOrcamento">
+                            Cliente
+                        </label>
+
+                        <select
+                            id="clienteOrcamento"
+                            required
+                        >
+
+                            <option value="">
+                                Selecione um cliente
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+            <section class="orcamento-bloco">
+
+                <h2>Adicionar produto</h2>
+
+                <div class="orcamento-linha">
+
+                    <div class="orcamento-campo">
+
+                        <label for="produtoOrcamento">
+                            Produto
+                        </label>
+
+                        <select id="produtoOrcamento">
+
+                            <option value="">
+                                Selecione um produto
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                    <div class="orcamento-campo">
+
+                        <label for="quantidadeProduto">
+                            Quantidade
+                        </label>
+
+                        <input
+                            type="number"
+                            id="quantidadeProduto"
+                            min="1"
+                            value="1"
+                        >
+
+                    </div>
+
+                    <div class="orcamento-campo">
+
+                        <label for="valorUnitario">
+                            Valor unitário
+                        </label>
+
+                        <input
+                            type="number"
+                            id="valorUnitario"
+                            min="0"
+                            step="0.01"
+                            value="0.00"
+                        >
+
+                    </div>
+
+                </div>
+
+                <button
+                    type="button"
+                    id="btnAdicionarProduto"
+                    class="botao-orcamento"
+                >
+                    Adicionar produto
+                </button>
+
+            </section>
+
+            <section class="orcamento-bloco">
+
+                <h2>Itens do orçamento</h2>
+
+                <div class="tabela-orcamento-wrapper">
+
+                    <table class="tabela-orcamento">
+
+                        <thead>
+
+                            <tr>
+
+                                <th>Produto</th>
+
+                                <th>Quantidade</th>
+
+                                <th>Valor unitário</th>
+
+                                <th>Subtotal</th>
+
+                                <th>Ações</th>
+
+                            </tr>
+
+                        </thead>
+
+                        <tbody id="listaItensOrcamento">
+
+                            <tr id="orcamentoSemItens">
+
+                                <td colspan="5">
+                                    Nenhum produto adicionado.
+                                </td>
+
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </section>
+
+            <section class="orcamento-bloco">
+
+                <h2>Valores finais</h2>
+
+                <div class="orcamento-linha">
+
+                    <div class="orcamento-campo">
+
+                        <label for="descontoOrcamento">
+                            Desconto
+                        </label>
+
+                        <input
+                            type="number"
+                            id="descontoOrcamento"
+                            min="0"
+                            step="0.01"
+                            value="0.00"
+                        >
+
+                    </div>
+
+                    <div class="orcamento-campo">
+
+                        <label for="freteOrcamento">
+                            Frete
+                        </label>
+
+                        <input
+                            type="number"
+                            id="freteOrcamento"
+                            min="0"
+                            step="0.01"
+                            value="0.00"
+                        >
+
+                    </div>
+
+                </div>
+
+                <div class="orcamento-resumo">
+
+                    <p>
+                        Subtotal:
+                        <strong id="subtotalOrcamento">
+                            R$ 0,00
+                        </strong>
+                    </p>
+
+                    <p>
+                        Desconto:
+                        <strong id="resumoDesconto">
+                            R$ 0,00
+                        </strong>
+                    </p>
+
+                    <p>
+                        Frete:
+                        <strong id="resumoFrete">
+                            R$ 0,00
+                        </strong>
+                    </p>
+
+                    <p class="orcamento-total">
+
+                        Total:
+
+                        <strong id="totalOrcamento">
+                            R$ 0,00
+                        </strong>
+
+                    </p>
+
+                </div>
+
+            </section>
+
+            <section class="orcamento-bloco">
+
+                <div class="orcamento-campo">
+
+                    <label for="observacoesOrcamento">
+                        Observações
+                    </label>
+
+                    <textarea
+                        id="observacoesOrcamento"
+                        placeholder="Informações adicionais do orçamento..."
+                    ></textarea>
+
+                </div>
+
+            </section>
+
+            <div class="orcamento-acoes">
+
+                <button
+                    type="submit"
+                    class="botao-orcamento"
+                >
+                    Salvar orçamento
+                </button>
+
+                <button
+                    type="button"
+                    id="btnWhatsAppOrcamento"
+                    class="botao-whatsapp-orcamento"
+                >
+                    Enviar pelo WhatsApp
+                </button>
+
+            </div>
+
+        </form>
+
+        <section class="orcamento-bloco lista-orcamentos-salvos">
+
+            <h2>Orçamentos salvos</h2>
+
+            <input
+                type="search"
+                id="pesquisaOrcamento"
+                placeholder="Pesquisar por número ou cliente..."
+            >
+
+            <div class="tabela-orcamento-wrapper">
+
+                <table class="tabela-orcamento">
+
+                    <thead>
+
+                        <tr>
+
+                            <th>Número</th>
+
+                            <th>Cliente</th>
+
+                            <th>Data</th>
+
+                            <th>Total</th>
+
+                            <th>Ações</th>
+
+                        </tr>
+
+                    </thead>
+
+                    <tbody id="listaOrcamentosSalvos">
+
+                        <tr>
+
+                            <td colspan="5">
+                                Nenhum orçamento salvo.
+                            </td>
+
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+    </main>
+
+    <script src="../orcamentos.js"></script>
+
+</body>
+
+</html>

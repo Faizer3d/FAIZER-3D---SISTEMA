@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Cadastro de Produtos - FAIZER3D</title>
+
+    <link rel="stylesheet" href="../style.css">
+</head>
+
+<body>
+
+<div class="pagina-clientes">
+
+    <h1>Cadastro de Produtos</h1>
+
+    <a href="../index.html" class="voltar">
+        ← Voltar ao Menu
+    </a>
+
+    <form id="formProduto">
+
+        <!-- Imagem do produto -->
+
+        <div class="linha">
+
+            <div class="campo">
+
+                <label for="imagemProduto">
+                    Imagem do Produto
+                </label>
+
+                <input
+                    type="file"
+                    id="imagemProduto"
+                    accept="image/png, image/jpeg, image/webp"
+                >
+
+                <small>
+                    Formatos permitidos: JPG, PNG ou WEBP.
+                </small>
+
+            </div>
+
+            <div class="campo">
+
+                <label>Pré-visualização</label>
+
+                <div class="area-preview">
+
+                    <img
+                        id="previewImagem"
+                        alt="Pré-visualização do produto"
+                    >
+
+                    <span id="textoPreview">
+                        Nenhuma imagem selecionada
+                    </span>
+
+                </div>
+
+                <button
+                    type="button"
+                    id="btnRemoverImagem"
+                    class="btn-remover-imagem"
+                    hidden
+                >
+                    Remover imagem
+                </button>
+
+            </div>
+
+        </div>
+
+        <!-- Informações principais -->
+
+        <div class="linha">
+
+            <div class="campo">
+
+                <label for="codigo">
+                    Código
+                </label>
+
+                <input
+                    type="text"
+                    id="codigo"
+                    required
+                >
+
+            </div>
+
+            <div class="campo">
+
+                <label for="nomeProduto">
+                    Nome do Produto
+                </label>
+
+                <input
+                    type="text"
+                    id="nomeProduto"
+                    required
+                >
+
+            </div>
+
+        </div>
+
+        <div class="linha">
+
+            <div class="campo">
+
+                <label for="categoria">
+                    Categoria
+                </label>
+
+                <input
+                    type="text"
+                    id="categoria"
+                    placeholder="Ex.: Personagens, Suportes, Decoração"
+                    required
+                >
+
+            </div>
+
+            <div class="campo">
+
+                <label for="unidade">
+                    Unidade
+                </label>
+
+                <select id="unidade" required>
+
+                    <option value="">
+                        Selecione
+                    </option>
+
+                    <option value="Unidade">
+                        Unidade
+                    </option>
+
+                    <option value="Kit">
+                        Kit
+                    </option>
+
+                    <option value="Par">
+                        Par
+                    </option>
+
+                    <option value="Metro">
+                        Metro
+                    </option>
+
+                    <option value="Quilograma">
+                        Quilograma
+                    </option>
+
+                </select>
+
+            </div>
+
+        </div>
+
+        <!-- Filamento -->
+
+        <div class="linha">
+
+            <div class="campo">
+
+                <label for="pesoFilamento">
+                    Peso do Filamento (g)
+                </label>
+
+                <input
+                    type="number"
+                    id="pesoFilamento"
+                    min="0"
+                    step="0.01"
+                    value="0"
+                >
+
+            </div>
+
+            <div class="campo">
+
+                <label for="precoFilamentoKg">
+                    Preço do Filamento por kg
+                </label>
+
+                <input
+                    type="number"
+                    id="precoFilamentoKg"
+                    min="0"
+                    step="0.01"
+                    value="0"
+                >
+
+            </div>
+
+        </div>
+
+        <!-- Máquina -->
+
+        <div class="linha">
+
+            <div class="campo">
+
+                <label for="tempoImpressao">
+                    Tempo de Impressão (horas)
+                </label>
+
+                <input
+                    type="number"
+                    id="tempoImpressao"
+                    min="0"
+                    step="0.01"
+                    value="0"
+                >
+
+            </div>
+
+            <div class="campo">
+
+                <label for="custoMaquinaHora">
+                    Custo da Máquina por Hora
+                </label>
+
+                <input
+                    type="number"
+                    id="custoMaquinaHora"
+                    min="0"
+                    step="0.01"
+                    value="0"
+                >
+
+            </div>
+
+        </div>
+
+        <!-- Mão de obra -->
+
+        <div class="linha">
+
+            <div class="campo">
+
+                <label for="tempoElaboracao">
+                    Tempo de Elaboração (horas)
+                </label>
+
+                <input
+                    type="number"
+                    id="tempoElaboracao"
+                    min="0"
+                    step="0.01"
+                    value="0"
+                >
+
+            </div>
+
+            <div class="campo">
+
+                <label for="valorHoraTrabalho">
+                    Valor da Mão de Obra por Hora
+                </label>
+
+                <input
+                    type="number"
+                    id="valorHoraTrabalho"
+                    min="0"
+                    step="0.01"
+                    value="0"
+                >
+
+            </div>
+
+        </div>
+
+        <!-- Custos e lucro -->
+
+        <div class="linha">
+
+            <div class="campo">
+
+                <label for="custoCalculado">
+                    Custo Calculado
+                </label>
+
+                <input
+                    type="number"
+                    id="custoCalculado"
+                    step="0.01"
+                    readonly
+                >
+
+            </div>
+
+            <div class="campo">
+
+                <label for="lucroPercentual">
+                    Lucro Desejado (%)
+                </label>
+
+                <input
+                    type="number"
+                    id="lucroPercentual"
+                    min="0"
+                    step="0.01"
+                    value="0"
+                >
+
+            </div>
+
+        </div>
+
+        <div class="linha">
+
+            <div class="campo">
+
+                <label for="vendaSugerida">
+                    Preço de Venda Sugerido
+                </label>
+
+                <input
+                    type="number"
+                    id="vendaSugerida"
+                    step="0.01"
+                    readonly
+                >
+
+            </div>
+
+            <div class="campo">
+
+                <label for="estoque">
+                    Quantidade em Estoque
+                </label>
+
+                <input
+                    type="number"
+                    id="estoque"
+                    min="0"
+                    step="1"
+                    value="0"
+                >
+
+            </div>
+
+        </div>
+
+        <!-- Observações -->
+
+        <div class="linha">
+
+            <div class="campo observacao">
+
+                <label for="observacoes">
+                    Observações
+                </label>
+
+                <textarea
+                    id="observacoes"
+                    rows="4"
+                    placeholder="Informações adicionais sobre o produto..."
+                ></textarea>
+
+            </div>
+
+        </div>
+
+        <button
+            type="submit"
+            id="btnSalvarProduto"
+            class="btnSalvar"
+        >
+            Salvar Produto
+        </button>
+
+    </form>
+
+    <hr>
+
+    <!-- Pesquisa -->
+
+    <h2>Pesquisar Produto</h2>
+
+    <input
+        type="text"
+        id="pesquisaProduto"
+        placeholder="Digite o código, nome ou categoria..."
+    >
+
+    <hr>
+
+    <!-- Produtos cadastrados -->
+
+    <h2>Produtos Cadastrados</h2>
+
+    <table id="tabelaProdutos">
+
+        <thead>
+
+            <tr>
+                <th>Imagem</th>
+                <th>Código</th>
+                <th>Produto</th>
+                <th>Categoria</th>
+                <th>Estoque</th>
+                <th>Custo</th>
+                <th>Venda</th>
+                <th>Ações</th>
+            </tr>
+
+        </thead>
+
+        <tbody id="listaProdutos">
+        </tbody>
+
+    </table>
+
+</div>
+
+<script src="../produtos.js"></script>
+
+</body>
+
+</html>
