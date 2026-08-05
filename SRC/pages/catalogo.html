@@ -11,7 +11,6 @@
 
     <title>Catálogo de Produtos | FAIZER3D</title>
 
-    <!-- CSS principal -->
     <link rel="stylesheet" href="../STYLE.CSS">
 </head>
 
@@ -20,63 +19,77 @@
     <main class="catalogo-container">
 
         <!-- CABEÇALHO -->
+
         <header class="catalogo-cabecalho">
 
             <div>
-                <h1>Catálogo de Produtos</h1>
+
+                <h1>
+                    Catálogo de Produtos
+                </h1>
 
                 <p>
                     Conheça nossos produtos personalizados em impressão 3D.
                 </p>
+
             </div>
 
-            <a href="../INDEX.HTML" class="botao-voltar">
+            <a
+                href="../INDEX.HTML"
+                class="botao-voltar"
+            >
                 ← Voltar ao menu
             </a>
 
         </header>
 
 
-        <!-- FILTROS -->
+        <!-- PESQUISA E FILTRO -->
+
         <section class="catalogo-filtros">
 
             <input
                 type="search"
-                id="catalogoPesquisa"
+                id="pesquisaCatalogo"
                 placeholder="Pesquisar produto ou categoria..."
                 autocomplete="off"
             >
 
             <select id="filtroCategoria">
-                <option value="">Todas as categorias</option>
+
+                <option value="">
+                    Todas as categorias
+                </option>
+
             </select>
 
         </section>
 
 
-        <!-- LISTA DE PRODUTOS -->
+        <!-- PRODUTOS -->
+
         <section
             id="listaCatalogo"
-            class="catalogo-grade"
+            class="catalogo-grid"
         >
-            <!--
-                Os produtos cadastrados serão
-                inseridos aqui pelo JavaScript.
-            -->
+            <!-- Produtos inseridos pelo JavaScript -->
         </section>
 
 
         <!-- CATÁLOGO VAZIO -->
+
         <div
             id="catalogoVazio"
             class="catalogo-vazio"
             hidden
         >
 
-            <h2>Nenhum produto encontrado</h2>
+            <h2>
+                Nenhum produto encontrado
+            </h2>
 
             <p>
-                Cadastre um produto para que ele apareça no catálogo.
+                Nenhum produto disponível no catálogo no momento.
             </p>
 
         </div>
@@ -84,7 +97,140 @@
     </main>
 
 
-    <!-- JAVASCRIPT DO CATÁLOGO -->
+    <!-- ==========================================
+         JANELA DE DETALHES DO PRODUTO
+    =========================================== -->
+
+    <div
+        id="modalProduto"
+        class="modal-produto"
+        hidden
+    >
+
+        <div class="modal-produto-fundo"></div>
+
+        <div class="modal-produto-conteudo">
+
+
+            <!-- FECHAR -->
+
+            <button
+                type="button"
+                id="fecharModalProduto"
+                class="modal-produto-fechar"
+                aria-label="Fechar"
+            >
+                ×
+            </button>
+
+
+            <!-- GALERIA -->
+
+            <div class="modal-produto-galeria">
+
+                <div class="modal-imagem-principal">
+
+                    <button
+                        type="button"
+                        id="imagemAnterior"
+                        class="galeria-seta galeria-seta-esquerda"
+                        aria-label="Imagem anterior"
+                    >
+                        ‹
+                    </button>
+
+                    <img
+                        id="modalImagemPrincipal"
+                        alt="Imagem do produto"
+                    >
+
+                    <button
+                        type="button"
+                        id="proximaImagem"
+                        class="galeria-seta galeria-seta-direita"
+                        aria-label="Próxima imagem"
+                    >
+                        ›
+                    </button>
+
+                </div>
+
+
+                <!-- CONTADOR -->
+
+                <div
+                    id="contadorImagens"
+                    class="contador-imagens"
+                >
+                </div>
+
+
+                <!-- MINIATURAS -->
+
+                <div
+                    id="modalMiniaturas"
+                    class="modal-miniaturas"
+                >
+                </div>
+
+            </div>
+
+
+            <!-- INFORMAÇÕES -->
+
+            <div class="modal-produto-informacoes">
+
+                <span
+                    id="modalCategoria"
+                    class="modal-produto-categoria"
+                >
+                </span>
+
+                <h2 id="modalNomeProduto">
+                </h2>
+
+                <div
+                    id="modalPrecoProduto"
+                    class="modal-produto-preco"
+                >
+                </div>
+
+                <div
+                    id="modalEstoqueProduto"
+                    class="modal-produto-estoque"
+                >
+                </div>
+
+                <div
+                    id="modalObservacoesProduto"
+                    class="modal-produto-observacoes"
+                >
+                </div>
+
+
+                <!-- WHATSAPP -->
+
+                <a
+                    id="botaoWhatsAppProduto"
+                    class="botao-whatsapp-produto"
+                    href="#"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    🟢 Pedir pelo WhatsApp
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- PRODUTOS PÚBLICOS -->
+    <script src="../produtos-publicos.js"></script>
+
+    <!-- LÓGICA DO CATÁLOGO -->
     <script src="../catalogo.js"></script>
 
 </body>
