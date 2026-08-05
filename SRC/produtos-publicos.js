@@ -22,6 +22,15 @@ window.FAIZER3D_PRODUTOS_PUBLICOS = [
         descricao:
             "Pikachu personalizado produzido em impressão 3D.",
 
+
+        /* FOTO PRINCIPAL DO CARD */
+
+        imagem:
+            "../Captura de tela 2026-07-23 025900.png",
+
+
+        /* GALERIA COM 5 FOTOS */
+
         imagens: [
 
             "../Captura de tela 2026-07-23 025900.png",
@@ -35,6 +44,7 @@ window.FAIZER3D_PRODUTOS_PUBLICOS = [
             "../Captura de tela 2026-07-23 030015.png"
 
         ]
+
     }
 
 ];
