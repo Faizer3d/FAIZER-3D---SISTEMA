@@ -2111,14 +2111,13 @@ body{
 .producao-card {
     display: flex;
     flex-direction: column;
-    min-height: 100%;
-}
-
+    min-height:
 /* =====================================================
-   FAIZER3D - GALERIA DE FOTOS DO CATÁLOGO
+   FAIZER3D - AJUSTE FINAL DO CATÁLOGO / MODAL
+   Compatível com catalogo.html e catalogo.js atuais
 ===================================================== */
 
-/* QUANTIDADE DE FOTOS NO CARD */
+/* CONTADOR DE FOTOS NO CARD */
 .catalogo-imagem-container {
     position: relative;
 }
@@ -2127,174 +2126,210 @@ body{
     position: absolute;
     right: 12px;
     bottom: 12px;
+    z-index: 3;
+
     padding: 7px 11px;
-    background: rgba(0, 0, 0, 0.78);
+
+    background: rgba(0, 0, 0, 0.80);
     border: 1px solid rgba(255, 255, 255, 0.15);
     border-radius: 20px;
+
     color: #ffffff;
     font-size: 13px;
     font-weight: bold;
-    pointer-events: none;
+
+    backdrop-filter: blur(4px);
 }
 
 /* BOTÃO VER PRODUTO */
 .botao-ver-produto {
     width: 100%;
     min-height: 46px;
+
     display: flex;
     align-items: center;
     justify-content: center;
+
+    margin-top: auto;
     margin-bottom: 10px;
     padding: 12px 16px;
+
     background: #ff6b00;
     border: none;
     border-radius: 8px;
+
     color: #ffffff;
     cursor: pointer;
+
+    font-family: Arial, Helvetica, sans-serif;
     font-size: 15px;
     font-weight: bold;
-    transition: background 0.2s, transform 0.2s;
+
+    transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
 }
 
 .botao-ver-produto:hover {
     background: #e85f00;
     transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(255, 107, 0, 0.24);
 }
 
-/* MODAL DO PRODUTO */
+/* MODAL */
+.modal-produto[hidden] {
+    display: none !important;
+}
+
 .modal-produto {
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+    inset: 0;
     z-index: 9999;
+
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 25px;
-}
 
-.modal-produto[hidden] {
-    display: none;
+    padding: 18px;
 }
 
 .modal-produto-fundo {
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+    inset: 0;
     background: rgba(0, 0, 0, 0.88);
     backdrop-filter: blur(5px);
 }
 
 .modal-produto-conteudo {
     position: relative;
-    z-index: 1;
-    width: min(1000px, 95%);
-    max-height: 90vh;
+    z-index: 2;
+
+    width: min(1080px, 94vw);
+    height: min(720px, 88vh);
+
     display: grid;
-    grid-template-columns: 1.2fr 0.8fr;
-    overflow-y: auto;
+    grid-template-columns: minmax(0, 1.45fr) minmax(320px, 0.85fr);
+
+    overflow: hidden;
+
     background: #202329;
     border: 1px solid #41464f;
     border-radius: 16px;
     box-shadow: 0 25px 70px rgba(0, 0, 0, 0.65);
 }
 
-/* BOTÃO FECHAR */
+/* FECHAR */
 .modal-produto-fechar {
     position: absolute;
-    top: 12px;
-    right: 12px;
-    z-index: 10;
-    width: 42px;
-    height: 42px;
+    top: 14px;
+    right: 14px;
+    z-index: 30;
+
+    width: 44px;
+    height: 44px;
+
     display: flex;
     align-items: center;
     justify-content: center;
+
     padding: 0;
-    background: rgba(0, 0, 0, 0.75);
+    background: rgba(0, 0, 0, 0.80);
     border: 1px solid #555b64;
     border-radius: 50%;
+
     color: #ffffff;
     cursor: pointer;
-    font-size: 30px;
+    font-size: 27px;
     line-height: 1;
+
     transition: background 0.2s, transform 0.2s;
 }
 
 .modal-produto-fechar:hover {
     background: #ff6b00;
-    transform: scale(1.05);
+    transform: scale(1.06);
 }
 
-/* ÁREA DA GALERIA */
+/* COLUNA DA GALERIA */
 .modal-produto-galeria {
     min-width: 0;
-    padding: 24px;
-    background: #181a1f;
+    min-height: 0;
+
+    display: flex;
+    flex-direction: column;
+
+    padding: 20px;
+    background: #171a1f;
+    overflow: hidden;
 }
 
-/* IMAGEM PRINCIPAL */
+/* O HTML ATUAL USA .modal-imagem-principal COMO CONTÊINER */
 .modal-imagem-principal {
     position: relative;
-    width: 100%;
-    height: 520px;
+    min-height: 0;
+    flex: 1;
+
     display: flex;
     align-items: center;
     justify-content: center;
+
     overflow: hidden;
-    background: #111318;
+
+    background: #101217;
+    border: 1px solid #343941;
     border-radius: 12px;
 }
 
-.modal-imagem-principal img {
+/* A IMAGEM É IDENTIFICADA PELO ID */
+#modalImagemPrincipal {
     display: block;
     width: 100%;
     height: 100%;
     object-fit: contain;
 }
 
-/* SETAS */
+/* SETAS REAIS DO HTML */
 .galeria-seta {
     position: absolute;
     top: 50%;
-    z-index: 5;
-    width: 44px;
-    height: 55px;
+    z-index: 12;
+
+    width: 46px;
+    height: 58px;
+
     display: flex;
     align-items: center;
     justify-content: center;
+
     transform: translateY(-50%);
-    padding: 0;
-    background: rgba(0, 0, 0, 0.70);
-    border: 1px solid rgba(255, 255, 255, 0.20);
-    border-radius: 8px;
+
+    background: rgba(0, 0, 0, 0.72);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: 10px;
+
     color: #ffffff;
     cursor: pointer;
-    font-size: 36px;
+    font-size: 32px;
     font-weight: bold;
+
+    transition: background 0.2s, transform 0.2s;
 }
 
 .galeria-seta:hover {
     background: #ff6b00;
-    border-color: #ff6b00;
 }
 
 .galeria-seta-esquerda {
-    left: 12px;
+    left: 14px;
 }
 
 .galeria-seta-direita {
-    right: 12px;
+    right: 14px;
 }
 
 /* CONTADOR */
 .contador-imagens {
+    flex: 0 0 auto;
     margin-top: 10px;
-    color: #b6bac1;
+    color: #d1d4d9;
     text-align: center;
     font-size: 14px;
     font-weight: bold;
@@ -2302,27 +2337,42 @@ body{
 
 /* MINIATURAS */
 .modal-miniaturas {
+    flex: 0 0 auto;
+
     width: 100%;
+    min-height: 76px;
+
     display: flex;
+    align-items: center;
     gap: 10px;
-    margin-top: 14px;
-    padding: 2px 0 6px;
+
+    margin-top: 12px;
+    padding: 2px 0 4px;
+
     overflow-x: auto;
+    overflow-y: hidden;
 }
 
 .modal-miniatura {
-    width: 75px;
-    height: 75px;
-    flex: 0 0 75px;
+    width: 72px;
+    height: 72px;
+    flex: 0 0 72px;
+
     object-fit: cover;
+    background: #111318;
+
     border: 2px solid transparent;
     border-radius: 8px;
-    opacity: 0.65;
+
     cursor: pointer;
+    opacity: 0.65;
+
+    transition: opacity 0.2s, border-color 0.2s, transform 0.2s;
 }
 
 .modal-miniatura:hover {
     opacity: 1;
+    transform: translateY(-2px);
 }
 
 .modal-miniatura.ativa {
@@ -2330,66 +2380,96 @@ body{
     border-color: #ff6b00;
 }
 
-/* INFORMAÇÕES DO PRODUTO */
+.modal-miniaturas::-webkit-scrollbar {
+    height: 7px;
+}
+
+.modal-miniaturas::-webkit-scrollbar-track {
+    background: #111318;
+    border-radius: 20px;
+}
+
+.modal-miniaturas::-webkit-scrollbar-thumb {
+    background: #555b64;
+    border-radius: 20px;
+}
+
+.modal-miniaturas::-webkit-scrollbar-thumb:hover {
+    background: #ff6b00;
+}
+
+/* COLUNA DAS INFORMAÇÕES - CLASSE REAL DO HTML */
 .modal-produto-informacoes {
+    min-width: 0;
+    min-height: 0;
+
     display: flex;
     flex-direction: column;
-    padding: 38px 30px 30px;
+
+    padding: 36px 32px 28px;
+    background: #202329;
+    overflow-y: auto;
 }
 
 .modal-produto-categoria {
-    margin-bottom: 10px;
-    color: #ff7a1a;
+    display: block;
+    margin: 8px 54px 8px 0;
+    color: #ff6b00;
     font-size: 14px;
     font-weight: bold;
 }
 
-.modal-produto-informacoes h2 {
-    margin: 0 0 18px;
+#modalNomeProduto {
+    margin: 0 52px 14px 0;
     color: #ffffff;
-    font-size: 30px;
-    line-height: 1.2;
+    font-size: clamp(27px, 2.4vw, 36px);
+    line-height: 1.16;
 }
 
 .modal-produto-preco {
-    margin-bottom: 14px;
+    margin: 0 0 14px;
     color: #ff6b00;
-    font-size: 32px;
+    font-size: 31px;
     font-weight: bold;
 }
 
 .modal-produto-estoque {
-    margin-bottom: 20px;
+    margin: 0 0 22px;
     padding-bottom: 20px;
     border-bottom: 1px solid #3a3f47;
-    color: #d5d5d5;
-    font-size: 15px;
+    color: #eeeeee;
+    font-size: 16px;
     font-weight: bold;
 }
 
 .modal-produto-observacoes {
-    margin-bottom: 25px;
-    color: #c6c6c6;
+    margin: 0 0 24px;
+    color: #d0d0d0;
     font-size: 15px;
-    line-height: 1.6;
+    line-height: 1.55;
     white-space: pre-line;
 }
 
+/* WHATSAPP REAL DO MODAL */
 .botao-whatsapp-produto {
     width: 100%;
     min-height: 50px;
+
     display: inline-flex;
     align-items: center;
     justify-content: center;
+
     margin-top: auto;
     padding: 13px 18px;
+
     background: #25d366;
     border-radius: 8px;
+
     color: #ffffff;
-    text-align: center;
     text-decoration: none;
-    font-size: 16px;
+    text-align: center;
     font-weight: bold;
+
     transition: background 0.2s, transform 0.2s;
 }
 
@@ -2398,96 +2478,224 @@ body{
     transform: translateY(-2px);
 }
 
-/* RESPONSIVIDADE - TABLET */
-@media (max-width: 850px) {
+/* TABLET */
+@media (max-width: 900px) {
     .modal-produto {
-        padding: 15px;
+        padding: 12px;
     }
 
     .modal-produto-conteudo {
-        width: min(650px, 100%);
+        width: min(760px, 96vw);
+        height: min(900px, 94vh);
         grid-template-columns: 1fr;
-        max-height: 94vh;
+        grid-template-rows: minmax(380px, 1.15fr) minmax(250px, 0.85fr);
+        overflow-y: auto;
     }
 
     .modal-produto-galeria {
-        padding: 18px;
-    }
-
-    .modal-imagem-principal {
-        height: 430px;
+        overflow: visible;
+        padding: 16px;
     }
 
     .modal-produto-informacoes {
-        padding: 25px;
+        overflow: visible;
+        padding: 24px;
     }
 }
 
-/* RESPONSIVIDADE - CELULAR */
-@media (max-width: 550px) {
+/* CELULAR */
+@media (max-width: 600px) {
     .modal-produto {
-        padding: 0;
         align-items: flex-start;
+        padding: 6px;
     }
 
     .modal-produto-conteudo {
         width: 100%;
-        min-height: 100vh;
-        max-height: 100vh;
-        grid-template-columns: 1fr;
-        border: none;
-        border-radius: 0;
+        height: calc(100vh - 12px);
+        max-height: none;
+        grid-template-rows: minmax(330px, 54vh) auto;
+        border-radius: 12px;
     }
 
     .modal-produto-galeria {
-        padding: 12px;
+        padding: 8px;
     }
 
-    .modal-imagem-principal {
-        height: 380px;
-        border-radius: 8px;
+    .galeria-seta {
+        width: 40px;
+        height: 50px;
+        font-size: 28px;
+    }
+
+    .galeria-seta-esquerda {
+        left: 8px;
+    }
+
+    .galeria-seta-direita {
+        right: 8px;
+    }
+
+    .modal-miniaturas {
+        min-height: 62px;
+        gap: 8px;
+        margin-top: 9px;
+    }
+
+    .modal-miniatura {
+        width: 58px;
+        height: 58px;
+        flex-basis: 58px;
+    }
+
+    .modal-produto-informacoes {
+        padding: 22px 18px 24px;
+    }
+
+    #modalNomeProduto {
+        margin-right: 45px;
+        font-size: 25px;
+    }
+
+    .modal-produto-preco {
+        font-size: 27px;
     }
 
     .modal-produto-fechar {
         top: 10px;
         right: 10px;
-        width: 40px;
-        height: 40px;
-    }
-
-    .galeria-seta {
         width: 38px;
-        height: 48px;
-        font-size: 30px;
+        height: 38px;
+        font-size: 23px;
     }
 
-    .galeria-seta-esquerda {
-        left: 7px;
+    .catalogo-quantidade-fotos {
+        right: 8px;
+        bottom: 8px;
+        padding: 6px 9px;
+        font-size: 12px;
+    }
+}
+
+/* =====================================================
+   FAIZER3D - AJUSTE FINAL DO MODAL DO CATÁLOGO - V3
+   Mantém o modal inteiro visível no desktop e evita
+   a barra de rolagem interna desnecessária.
+===================================================== */
+
+@media (min-width: 901px) {
+
+    .modal-produto {
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+        overflow: hidden;
     }
 
-    .galeria-seta-direita {
-        right: 7px;
+    .modal-produto-conteudo {
+        width: min(1080px, 92vw);
+        height: min(650px, 82vh);
+        max-height: 82vh;
+
+        grid-template-columns: minmax(0, 1.45fr) minmax(330px, 0.85fr);
+
+        overflow: hidden;
+        border-radius: 16px;
+    }
+
+    .modal-produto-fechar {
+        top: 12px;
+        right: 12px;
+        z-index: 100;
+    }
+
+    .modal-produto-galeria {
+        min-height: 0;
+        padding: 16px;
+        overflow: hidden;
+    }
+
+    .modal-imagem-principal {
+        min-height: 0;
+        flex: 1 1 auto;
+    }
+
+    #modalImagemPrincipal {
+        width: 100%;
+        height: 100%;
+        max-height: 100%;
+        object-fit: contain;
+    }
+
+    .contador-imagens {
+        margin-top: 8px;
+    }
+
+    .modal-miniaturas {
+        min-height: 68px;
+        margin-top: 8px;
+        gap: 9px;
     }
 
     .modal-miniatura {
-        width: 62px;
-        height: 62px;
-        flex-basis: 62px;
+        width: 64px;
+        height: 64px;
+        flex-basis: 64px;
     }
 
     .modal-produto-informacoes {
-        padding: 22px 18px 30px;
+        min-height: 0;
+        padding: 28px 30px 24px;
+        overflow: hidden;
     }
 
-    .modal-produto-informacoes h2 {
-        font-size: 25px;
+    .modal-produto-categoria {
+        flex: 0 0 auto;
+        margin: 0 58px 8px 0;
+    }
+
+    #modalNomeProduto {
+        flex: 0 0 auto;
+        margin: 0 56px 12px 0;
+        font-size: clamp(26px, 2.2vw, 34px);
     }
 
     .modal-produto-preco {
-        font-size: 28px;
+        flex: 0 0 auto;
+        margin-bottom: 12px;
+        font-size: 30px;
+    }
+
+    .modal-produto-estoque {
+        flex: 0 0 auto;
+        margin-bottom: 16px;
+        padding-bottom: 16px;
+    }
+
+    .modal-produto-observacoes {
+        flex: 0 1 auto;
+        margin-bottom: 18px;
+        overflow-y: auto;
+        max-height: 180px;
+        padding-right: 6px;
+    }
+
+    .modal-produto-observacoes::-webkit-scrollbar {
+        width: 6px;
+    }
+
+    .modal-produto-observacoes::-webkit-scrollbar-track {
+        background: #181b20;
+        border-radius: 10px;
+    }
+
+    .modal-produto-observacoes::-webkit-scrollbar-thumb {
+        background: #555b64;
+        border-radius: 10px;
     }
 
     .botao-whatsapp-produto {
-        min-height: 50px;
+        flex: 0 0 auto;
+        margin-top: auto;
     }
 }
