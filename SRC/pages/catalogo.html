@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
 
@@ -8,16 +9,19 @@
         content="width=device-width, initial-scale=1.0"
     >
 
-    <title>Catálogo de Produtos | Faizer 3D</title>
+    <title>Catálogo de Produtos | FAIZER3D</title>
 
-    <link rel="stylesheet" href="../style.css">
+    <!-- CSS principal -->
+    <link rel="stylesheet" href="../STYLE.CSS">
 </head>
 
 <body class="pagina-catalogo">
 
     <main class="catalogo-container">
 
+        <!-- CABEÇALHO -->
         <header class="catalogo-cabecalho">
+
             <div>
                 <h1>Catálogo de Produtos</h1>
 
@@ -26,16 +30,19 @@
                 </p>
             </div>
 
-            <a href="../index.html" class="botao-voltar">
+            <a href="../INDEX.HTML" class="botao-voltar">
                 ← Voltar ao menu
             </a>
+
         </header>
 
+
+        <!-- FILTROS -->
         <section class="catalogo-filtros">
 
             <input
                 type="search"
-                id="pesquisaCatalogo"
+                id="catalogoPesquisa"
                 placeholder="Pesquisar produto ou categoria..."
                 autocomplete="off"
             >
@@ -46,27 +53,40 @@
 
         </section>
 
+
+        <!-- LISTA DE PRODUTOS -->
         <section
             id="listaCatalogo"
-            class="catalogo-grid"
+            class="catalogo-grade"
         >
-            <!-- Os produtos serão inseridos pelo JavaScript -->
+            <!--
+                Os produtos cadastrados serão
+                inseridos aqui pelo JavaScript.
+            -->
         </section>
 
+
+        <!-- CATÁLOGO VAZIO -->
         <div
             id="catalogoVazio"
             class="catalogo-vazio"
             hidden
         >
+
             <h2>Nenhum produto encontrado</h2>
 
             <p>
-                Cadastre um produto para ele aparecer no catálogo.
+                Cadastre um produto para que ele apareça no catálogo.
             </p>
+
         </div>
 
     </main>
 
+
+    <!-- JAVASCRIPT DO CATÁLOGO -->
     <script src="../catalogo.js"></script>
+
 </body>
+
 </html>
