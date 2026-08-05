@@ -1,7 +1,7 @@
 "use strict";
 
 /* ==========================================
-   FAIZER3D - CATÁLOGO DE PRODUTOS
+   FAIZER3D - CATÁLOGO PÚBLICO
 ========================================== */
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -20,22 +20,82 @@ document.addEventListener("DOMContentLoaded", function () {
     const catalogoVazio =
         document.getElementById("catalogoVazio");
 
+
+    /* ========= MODAL ========= */
+
+    const modalProduto =
+        document.getElementById("modalProduto");
+
+    const fecharModalProduto =
+        document.getElementById("fecharModalProduto");
+
+    const modalImagemPrincipal =
+        document.getElementById("modalImagemPrincipal");
+
+    const modalMiniaturas =
+        document.getElementById("modalMiniaturas");
+
+    const contadorImagens =
+        document.getElementById("contadorImagens");
+
+    const imagemAnterior =
+        document.getElementById("imagemAnterior");
+
+    const proximaImagem =
+        document.getElementById("proximaImagem");
+
+    const modalCategoria =
+        document.getElementById("modalCategoria");
+
+    const modalNomeProduto =
+        document.getElementById("modalNomeProduto");
+
+    const modalPrecoProduto =
+        document.getElementById("modalPrecoProduto");
+
+    const modalEstoqueProduto =
+        document.getElementById("modalEstoqueProduto");
+
+    const modalObservacoesProduto =
+        document.getElementById("modalObservacoesProduto");
+
+    const botaoWhatsAppProduto =
+        document.getElementById("botaoWhatsAppProduto");
+
+
     /* ========= CONFIGURAÇÕES ========= */
 
-    const CHAVE_PRODUTOS = "faizer3d_produtos";
+    const NUMERO_WHATSAPP =
+        "5544999214316";
 
-    const NUMERO_WHATSAPP = "5544999214316";
+
+    /* ========= PRODUTOS ========= */
 
     let produtos =
-        JSON.parse(
-            localStorage.getItem(CHAVE_PRODUTOS)
-        ) || [];
+        Array.isArray(
+            window.FAIZER3D_PRODUTOS_PUBLICOS
+        )
+            ? window.FAIZER3D_PRODUTOS_PUBLICOS
+            : [];
 
-    /* ========= FUNÇÕES AUXILIARES ========= */
+
+    /* ========= GALERIA ========= */
+
+    let imagensProdutoAberto = [];
+
+    let indiceImagemAtual = 0;
+
+
+    /* ==========================================
+       FUNÇÕES AUXILIARES
+    ========================================== */
 
     function numero(valor) {
+
         return Number(valor) || 0;
+
     }
+
 
     function formatarDinheiro(valor) {
 
@@ -49,19 +109,53 @@ document.addEventListener("DOMContentLoaded", function () {
 
     }
 
+
     function escaparHTML(texto) {
 
         const elemento =
             document.createElement("div");
 
         elemento.textContent =
-            texto === undefined || texto === null
+            texto === undefined ||
+            texto === null
                 ? ""
                 : String(texto);
 
         return elemento.innerHTML;
 
     }
+
+
+    function obterImagensProduto(produto) {
+
+        if (
+            Array.isArray(produto.imagens) &&
+            produto.imagens.length > 0
+        ) {
+
+            return produto.imagens.filter(
+                function (imagem) {
+
+                    return (
+                        typeof imagem === "string" &&
+                        imagem.trim() !== ""
+                    );
+
+                }
+            );
+
+        }
+
+        if (produto.imagem) {
+
+            return [produto.imagem];
+
+        }
+
+        return [];
+
+    }
+
 
     /* ==========================================
        WHATSAPP
@@ -74,10 +168,10 @@ document.addEventListener("DOMContentLoaded", function () {
             "",
             "Tenho interesse neste produto:",
             "",
-            Produto: ${produto.nome},
-            Categoria: ${produto.categoria || "Não informada"},
-            Preço: ${formatarDinheiro(produto.vendaSugerida)},
-            Código: ${produto.codigo || "Não informado"},
+            `Produto: ${produto.nome || "Não informado"}`,
+            `Categoria: ${produto.categoria || "Não informada"}`,
+            `Preço: ${formatarDinheiro(produto.vendaSugerida)}`,
+            `Código: ${produto.codigo || "Não informado"}`,
             "",
             "Gostaria de fazer um pedido."
         ].join("\n");
@@ -86,27 +180,33 @@ document.addEventListener("DOMContentLoaded", function () {
 
     }
 
+
     function criarLinkWhatsApp(produto) {
 
         return (
-            https://wa.me/${NUMERO_WHATSAPP} +
-            ?text=${criarMensagemWhatsApp(produto)}
+            `https://wa.me/${NUMERO_WHATSAPP}` +
+            `?text=${criarMensagemWhatsApp(produto)}`
         );
 
     }
 
+
     /* ==========================================
-       CRIAR CARD
+       CRIAR CARD DO PRODUTO
     ========================================== */
 
     function criarCardProduto(produto) {
 
         const nome =
-            escaparHTML(produto.nome || "Produto sem nome");
+            escaparHTML(
+                produto.nome ||
+                "Produto sem nome"
+            );
 
         const categoria =
             escaparHTML(
-                produto.categoria || "Sem categoria"
+                produto.categoria ||
+                "Sem categoria"
             );
 
         const estoque =
@@ -117,23 +217,50 @@ document.addEventListener("DOMContentLoaded", function () {
                 produto.vendaSugerida
             );
 
+        const imagens =
+            obterImagensProduto(produto);
+
+        const imagemPrincipal =
+            imagens.length > 0
+                ? imagens[0]
+                : "";
+
+
         const imagemHTML =
-            produto.imagem
+            imagemPrincipal
                 ? `
                     <img
-                        src="${produto.imagem}"
+                        src="${imagemPrincipal}"
                         alt="${nome}"
                         class="catalogo-card-imagem"
                     >
                 `
                 : `
                     <div class="catalogo-sem-imagem">
-                        <span>📷</span>
-                        <p>Sem imagem</p>
+
+                        <span>
+                            📷
+                        </span>
+
+                        <p>
+                            Sem imagem
+                        </p>
+
                     </div>
                 `;
 
-        const botaoHTML =
+
+        const quantidadeFotosHTML =
+            imagens.length > 1
+                ? `
+                    <div class="catalogo-quantidade-fotos">
+                        📷 ${imagens.length} fotos
+                    </div>
+                `
+                : "";
+
+
+        const botaoWhatsAppHTML =
             estoque > 0
                 ? `
                     <a
@@ -155,10 +282,13 @@ document.addEventListener("DOMContentLoaded", function () {
                     </button>
                 `;
 
+
         const card =
             document.createElement("article");
 
-        card.className = "catalogo-card";
+        card.className =
+            "catalogo-card";
+
 
         card.innerHTML = `
 
@@ -166,7 +296,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
                 ${imagemHTML}
 
+                ${quantidadeFotosHTML}
+
             </div>
+
 
             <div class="catalogo-card-conteudo">
 
@@ -186,15 +319,412 @@ document.addEventListener("DOMContentLoaded", function () {
                     📦 Estoque: ${estoque}
                 </p>
 
-                ${botaoHTML}
+                <button
+                    type="button"
+                    class="botao-ver-produto"
+                >
+                    Ver produto
+                </button>
+
+                ${botaoWhatsAppHTML}
 
             </div>
 
         `;
 
+
+        const botaoVerProduto =
+            card.querySelector(
+                ".botao-ver-produto"
+            );
+
+        botaoVerProduto.addEventListener(
+            "click",
+            function () {
+
+                abrirModalProduto(produto);
+
+            }
+        );
+
+
+        const imagemCard =
+            card.querySelector(
+                ".catalogo-card-imagem"
+            );
+
+        if (imagemCard) {
+
+            imagemCard.style.cursor =
+                "pointer";
+
+            imagemCard.addEventListener(
+                "click",
+                function () {
+
+                    abrirModalProduto(produto);
+
+                }
+            );
+
+        }
+
+
         return card;
 
     }
+
+
+    /* ==========================================
+       ABRIR MODAL
+    ========================================== */
+
+    function abrirModalProduto(produto) {
+
+        imagensProdutoAberto =
+            obterImagensProduto(produto);
+
+        indiceImagemAtual = 0;
+
+
+        modalNomeProduto.textContent =
+            produto.nome ||
+            "Produto";
+
+
+        modalCategoria.textContent =
+            produto.categoria
+                ? `Categoria: ${produto.categoria}`
+                : "Sem categoria";
+
+
+        modalPrecoProduto.textContent =
+            formatarDinheiro(
+                produto.vendaSugerida
+            );
+
+
+        modalEstoqueProduto.textContent =
+            `Estoque disponível: ${numero(produto.estoque)}`;
+
+
+        const descricao =
+            produto.descricao ||
+            produto.observacoes ||
+            "";
+
+
+        if (
+            descricao.trim() !== ""
+        ) {
+
+            modalObservacoesProduto.textContent =
+                descricao;
+
+            modalObservacoesProduto.style.display =
+                "block";
+
+        } else {
+
+            modalObservacoesProduto.textContent =
+                "";
+
+            modalObservacoesProduto.style.display =
+                "none";
+
+        }
+
+
+        if (
+            numero(produto.estoque) > 0
+        ) {
+
+            botaoWhatsAppProduto.href =
+                criarLinkWhatsApp(produto);
+
+            botaoWhatsAppProduto.style.display =
+                "inline-flex";
+
+        } else {
+
+            botaoWhatsAppProduto.removeAttribute(
+                "href"
+            );
+
+            botaoWhatsAppProduto.style.display =
+                "none";
+
+        }
+
+
+        criarMiniaturas();
+
+        atualizarImagemPrincipal();
+
+
+        modalProduto.hidden =
+            false;
+
+        document.body.style.overflow =
+            "hidden";
+
+    }
+
+
+    /* ==========================================
+       IMAGEM PRINCIPAL
+    ========================================== */
+
+    function atualizarImagemPrincipal() {
+
+        if (
+            imagensProdutoAberto.length === 0
+        ) {
+
+            modalImagemPrincipal.removeAttribute(
+                "src"
+            );
+
+            modalImagemPrincipal.style.display =
+                "none";
+
+            contadorImagens.textContent =
+                "Produto sem imagem";
+
+            imagemAnterior.style.display =
+                "none";
+
+            proximaImagem.style.display =
+                "none";
+
+            return;
+
+        }
+
+
+        modalImagemPrincipal.style.display =
+            "block";
+
+
+        modalImagemPrincipal.src =
+            imagensProdutoAberto[
+                indiceImagemAtual
+            ];
+
+
+        contadorImagens.textContent =
+            `${indiceImagemAtual + 1} de ${imagensProdutoAberto.length}`;
+
+
+        if (
+            imagensProdutoAberto.length > 1
+        ) {
+
+            imagemAnterior.style.display =
+                "flex";
+
+            proximaImagem.style.display =
+                "flex";
+
+        } else {
+
+            imagemAnterior.style.display =
+                "none";
+
+            proximaImagem.style.display =
+                "none";
+
+        }
+
+
+        const miniaturas =
+            modalMiniaturas.querySelectorAll(
+                ".modal-miniatura"
+            );
+
+
+        miniaturas.forEach(
+            function (
+                miniatura,
+                indice
+            ) {
+
+                if (
+                    indice ===
+                    indiceImagemAtual
+                ) {
+
+                    miniatura.classList.add(
+                        "ativa"
+                    );
+
+                } else {
+
+                    miniatura.classList.remove(
+                        "ativa"
+                    );
+
+                }
+
+            }
+        );
+
+    }
+
+
+    /* ==========================================
+       MINIATURAS
+    ========================================== */
+
+    function criarMiniaturas() {
+
+        modalMiniaturas.innerHTML =
+            "";
+
+
+        if (
+            imagensProdutoAberto.length <= 1
+        ) {
+
+            modalMiniaturas.style.display =
+                "none";
+
+            return;
+
+        }
+
+
+        modalMiniaturas.style.display =
+            "flex";
+
+
+        imagensProdutoAberto.forEach(
+            function (
+                imagem,
+                indice
+            ) {
+
+                const miniatura =
+                    document.createElement(
+                        "img"
+                    );
+
+                miniatura.src =
+                    imagem;
+
+                miniatura.alt =
+                    `Foto ${indice + 1}`;
+
+                miniatura.className =
+                    "modal-miniatura";
+
+
+                miniatura.addEventListener(
+                    "click",
+                    function () {
+
+                        indiceImagemAtual =
+                            indice;
+
+                        atualizarImagemPrincipal();
+
+                    }
+                );
+
+
+                modalMiniaturas.appendChild(
+                    miniatura
+                );
+
+            }
+        );
+
+    }
+
+
+    /* ==========================================
+       NAVEGAÇÃO DAS FOTOS
+    ========================================== */
+
+    function mostrarImagemAnterior() {
+
+        if (
+            imagensProdutoAberto.length <= 1
+        ) {
+
+            return;
+
+        }
+
+
+        indiceImagemAtual--;
+
+
+        if (
+            indiceImagemAtual < 0
+        ) {
+
+            indiceImagemAtual =
+                imagensProdutoAberto.length - 1;
+
+        }
+
+
+        atualizarImagemPrincipal();
+
+    }
+
+
+    function mostrarProximaImagem() {
+
+        if (
+            imagensProdutoAberto.length <= 1
+        ) {
+
+            return;
+
+        }
+
+
+        indiceImagemAtual++;
+
+
+        if (
+            indiceImagemAtual >=
+            imagensProdutoAberto.length
+        ) {
+
+            indiceImagemAtual =
+                0;
+
+        }
+
+
+        atualizarImagemPrincipal();
+
+    }
+
+
+    /* ==========================================
+       FECHAR MODAL
+    ========================================== */
+
+    function fecharModal() {
+
+        modalProduto.hidden =
+            true;
+
+        document.body.style.overflow =
+            "";
+
+        imagensProdutoAberto =
+            [];
+
+        indiceImagemAtual =
+            0;
+
+    }
+
 
     /* ==========================================
        CATEGORIAS
@@ -203,54 +733,89 @@ document.addEventListener("DOMContentLoaded", function () {
     function preencherCategorias() {
 
         if (!filtroCategoria) {
+
             return;
+
         }
 
+
         filtroCategoria.innerHTML = `
+
             <option value="">
                 Todas as categorias
             </option>
+
         `;
 
+
         const categorias = [
+
             ...new Set(
+
                 produtos
-                    .map(function (produto) {
-                        return produto.categoria;
-                    })
-                    .filter(function (categoria) {
-                        return categoria &&
-                            categoria.trim() !== "";
-                    })
+
+                    .map(
+                        function (produto) {
+
+                            return produto.categoria;
+
+                        }
+                    )
+
+                    .filter(
+                        function (categoria) {
+
+                            return (
+                                categoria &&
+                                categoria.trim() !== ""
+                            );
+
+                        }
+                    )
+
             )
+
         ];
 
-        categorias.sort(function (a, b) {
 
-            return a.localeCompare(
-                b,
-                "pt-BR"
-            );
+        categorias.sort(
+            function (a, b) {
 
-        });
+                return a.localeCompare(
+                    b,
+                    "pt-BR"
+                );
 
-        categorias.forEach(function (categoria) {
+            }
+        );
 
-            const option =
-                document.createElement("option");
 
-            option.value = categoria;
+        categorias.forEach(
+            function (categoria) {
 
-            option.textContent = categoria;
+                const option =
+                    document.createElement(
+                        "option"
+                    );
 
-            filtroCategoria.appendChild(option);
+                option.value =
+                    categoria;
 
-        });
+                option.textContent =
+                    categoria;
+
+                filtroCategoria.appendChild(
+                    option
+                );
+
+            }
+        );
 
     }
 
+
     /* ==========================================
-       FILTRAR PRODUTOS
+       FILTRO
     ========================================== */
 
     function obterProdutosFiltrados() {
@@ -262,6 +827,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     .toLowerCase()
                 : "";
 
+
         const categoriaSelecionada =
             filtroCategoria
                 ? filtroCategoria.value
@@ -269,37 +835,50 @@ document.addEventListener("DOMContentLoaded", function () {
                     .toLowerCase()
                 : "";
 
-        return produtos.filter(function (produto) {
 
-            const nome =
-                String(produto.nome || "")
-                    .toLowerCase();
+        return produtos.filter(
+            function (produto) {
 
-            const categoria =
-                String(produto.categoria || "")
-                    .toLowerCase();
+                const nome =
+                    String(
+                        produto.nome || ""
+                    ).toLowerCase();
 
-            const codigo =
-                String(produto.codigo || "")
-                    .toLowerCase();
 
-            const correspondePesquisa =
-                nome.includes(termo) ||
-                categoria.includes(termo) ||
-                codigo.includes(termo);
+                const categoria =
+                    String(
+                        produto.categoria || ""
+                    ).toLowerCase();
 
-            const correspondeCategoria =
-                categoriaSelecionada === "" ||
-                categoria === categoriaSelecionada;
 
-            return (
-                correspondePesquisa &&
-                correspondeCategoria
-            );
+                const codigo =
+                    String(
+                        produto.codigo || ""
+                    ).toLowerCase();
 
-        });
+
+                const correspondePesquisa =
+                    nome.includes(termo) ||
+                    categoria.includes(termo) ||
+                    codigo.includes(termo);
+
+
+                const correspondeCategoria =
+                    categoriaSelecionada === "" ||
+                    categoria ===
+                    categoriaSelecionada;
+
+
+                return (
+                    correspondePesquisa &&
+                    correspondeCategoria
+                );
+
+            }
+        );
 
     }
+
 
     /* ==========================================
        MOSTRAR CATÁLOGO
@@ -307,94 +886,138 @@ document.addEventListener("DOMContentLoaded", function () {
 
     function mostrarCatalogo() {
 
-        if (!listaCatalogo) {
+        listaCatalogo.innerHTML =
+            "";
 
-            console.error(
-                "Elemento listaCatalogo não encontrado."
-            );
-
-            return;
-
-        }
 
         const produtosFiltrados =
             obterProdutosFiltrados();
 
-        listaCatalogo.innerHTML = "";
 
-        if (produtosFiltrados.length === 0) {
+        if (
+            produtosFiltrados.length === 0
+        ) {
 
-            if (catalogoVazio) {
-                catalogoVazio.hidden = false;
-            }
+            catalogoVazio.hidden =
+                false;
 
             return;
 
         }
 
-        if (catalogoVazio) {
-            catalogoVazio.hidden = true;
-        }
+
+        catalogoVazio.hidden =
+            true;
+
 
         produtosFiltrados.forEach(
             function (produto) {
 
-                const card =
-                    criarCardProduto(produto);
-
-                listaCatalogo.appendChild(card);
+                listaCatalogo.appendChild(
+                    criarCardProduto(produto)
+                );
 
             }
         );
 
     }
+
 
     /* ==========================================
        EVENTOS
     ========================================== */
 
-    if (pesquisaCatalogo) {
+    pesquisaCatalogo.addEventListener(
+        "input",
+        mostrarCatalogo
+    );
 
-        pesquisaCatalogo.addEventListener(
-            "input",
-            mostrarCatalogo
+
+    filtroCategoria.addEventListener(
+        "change",
+        mostrarCatalogo
+    );
+
+
+    fecharModalProduto.addEventListener(
+        "click",
+        fecharModal
+    );
+
+
+    imagemAnterior.addEventListener(
+        "click",
+        mostrarImagemAnterior
+    );
+
+
+    proximaImagem.addEventListener(
+        "click",
+        mostrarProximaImagem
+    );
+
+
+    const fundoModal =
+        modalProduto.querySelector(
+            ".modal-produto-fundo"
         );
 
-    }
 
-    if (filtroCategoria) {
+    fundoModal.addEventListener(
+        "click",
+        fecharModal
+    );
 
-        filtroCategoria.addEventListener(
-            "change",
-            mostrarCatalogo
-        );
 
-    }
+    document.addEventListener(
+        "keydown",
+        function (evento) {
 
-    window.addEventListener(
-        "storage",
-        function () {
+            if (
+                modalProduto.hidden
+            ) {
 
-            produtos =
-                JSON.parse(
-                    localStorage.getItem(
-                        CHAVE_PRODUTOS
-                    )
-                ) || [];
+                return;
 
-            preencherCategorias();
+            }
 
-            mostrarCatalogo();
+
+            if (
+                evento.key === "Escape"
+            ) {
+
+                fecharModal();
+
+            }
+
+
+            if (
+                evento.key === "ArrowLeft"
+            ) {
+
+                mostrarImagemAnterior();
+
+            }
+
+
+            if (
+                evento.key === "ArrowRight"
+            ) {
+
+                mostrarProximaImagem();
+
+            }
 
         }
     );
 
+
     /* ==========================================
-       INICIAR CATÁLOGO
+       INICIAR
     ========================================== */
 
     preencherCategorias();
 
     mostrarCatalogo();
 
-}); 
+});
