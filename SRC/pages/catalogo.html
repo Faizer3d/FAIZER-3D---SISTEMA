@@ -11,7 +11,11 @@
 
     <title>Catálogo de Produtos | FAIZER3D</title>
 
+    <!-- CSS GERAL DO SISTEMA -->
     <link rel="stylesheet" href="../STYLE.CSS">
+
+    <!-- CSS EXCLUSIVO DO CATÁLOGO -->
+    <link rel="stylesheet" href="../catalogo.css">
 </head>
 
 <body class="pagina-catalogo">
@@ -23,15 +27,11 @@
         <header class="catalogo-cabecalho">
 
             <div>
-
-                <h1>
-                    Catálogo de Produtos
-                </h1>
+                <h1>Catálogo de Produtos</h1>
 
                 <p>
                     Conheça nossos produtos personalizados em impressão 3D.
                 </p>
-
             </div>
 
             <a
@@ -56,17 +56,15 @@
             >
 
             <select id="filtroCategoria">
-
                 <option value="">
                     Todas as categorias
                 </option>
-
             </select>
 
         </section>
 
 
-        <!-- PRODUTOS -->
+        <!-- LISTA DE PRODUTOS -->
 
         <section
             id="listaCatalogo"
@@ -83,22 +81,18 @@
             class="catalogo-vazio"
             hidden
         >
-
-            <h2>
-                Nenhum produto encontrado
-            </h2>
+            <h2>Nenhum produto encontrado</h2>
 
             <p>
                 Nenhum produto disponível no catálogo no momento.
             </p>
-
         </div>
 
     </main>
 
 
     <!-- ==========================================
-         JANELA DE DETALHES DO PRODUTO
+         MODAL DO PRODUTO
     =========================================== -->
 
     <div
@@ -110,7 +104,6 @@
         <div class="modal-produto-fundo"></div>
 
         <div class="modal-produto-conteudo">
-
 
             <!-- FECHAR -->
 
@@ -161,8 +154,7 @@
                 <div
                     id="contadorImagens"
                     class="contador-imagens"
-                >
-                </div>
+                ></div>
 
 
                 <!-- MINIATURAS -->
@@ -170,8 +162,7 @@
                 <div
                     id="modalMiniaturas"
                     class="modal-miniaturas"
-                >
-                </div>
+                ></div>
 
             </div>
 
@@ -183,29 +174,24 @@
                 <span
                     id="modalCategoria"
                     class="modal-produto-categoria"
-                >
-                </span>
+                ></span>
 
-                <h2 id="modalNomeProduto">
-                </h2>
+                <h2 id="modalNomeProduto"></h2>
 
                 <div
                     id="modalPrecoProduto"
                     class="modal-produto-preco"
-                >
-                </div>
+                ></div>
 
                 <div
                     id="modalEstoqueProduto"
                     class="modal-produto-estoque"
-                >
-                </div>
+                ></div>
 
                 <div
                     id="modalObservacoesProduto"
                     class="modal-produto-observacoes"
-                >
-                </div>
+                ></div>
 
 
                 <!-- WHATSAPP -->
@@ -230,7 +216,7 @@
     <!-- PRODUTOS PÚBLICOS -->
     <script src="../produtos-publicos.js"></script>
 
-    <!-- LÓGICA DO CATÁLOGO -->
+    <!-- JAVASCRIPT DO CATÁLOGO -->
     <script src="../catalogo.js"></script>
 
 </body>
