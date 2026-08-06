@@ -1,0 +1,691 @@
+/* =====================================================
+   FAIZER3D - CSS EXCLUSIVO DO CATÁLOGO
+   Este arquivo pode ser alterado sem mexer no STYLE.CSS global.
+===================================================== */
+
+/* =====================================================
+   CATÁLOGO DE PRODUTOS
+===================================================== */
+
+.pagina-catalogo {
+    min-height: 100vh;
+    background:
+        radial-gradient(
+            circle at top,
+            rgba(255, 107, 0, 0.08),
+            transparent 35%
+        ),
+        #111318;
+    color: #ffffff;
+}
+
+.catalogo-container {
+    width: min(1200px, calc(100% - 32px));
+    margin: 0 auto;
+    padding: 40px 0 60px;
+}
+
+/* Cabeçalho */
+
+.catalogo-cabecalho {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    margin-bottom: 30px;
+}
+
+.catalogo-cabecalho h1 {
+    margin: 0 0 8px;
+    color: #ff6b00;
+    font-size: clamp(28px, 4vw, 42px);
+}
+
+.catalogo-cabecalho p {
+    margin: 0;
+    color: #c6c6c6;
+}
+
+.botao-voltar {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 18px;
+    border: 1px solid #ff6b00;
+    border-radius: 8px;
+    color: #ff7a1a;
+    text-decoration: none;
+    font-weight: bold;
+    transition: 0.2s;
+}
+
+.botao-voltar:hover {
+    background: #ff6b00;
+    color: #ffffff;
+    transform: translateY(-2px);
+}
+
+/* Pesquisa e filtro */
+
+.catalogo-filtros {
+    display: grid;
+    grid-template-columns: 1fr 280px;
+    gap: 16px;
+    margin-bottom: 30px;
+}
+
+.catalogo-filtros input,
+.catalogo-filtros select {
+    width: 100%;
+    min-height: 48px;
+    padding: 0 14px;
+    border: 1px solid #555b64;
+    border-radius: 8px;
+    outline: none;
+    background: #292d33;
+    color: #ffffff;
+    font-size: 15px;
+}
+
+.catalogo-filtros input::placeholder {
+    color: #a8abb0;
+}
+
+.catalogo-filtros input:focus,
+.catalogo-filtros select:focus {
+    border-color: #ff6b00;
+    box-shadow: 0 0 0 3px rgba(255, 107, 0, 0.16);
+}
+
+/* Grade de produtos */
+
+.catalogo-grid {
+    display: grid;
+    grid-template-columns: repeat(
+        auto-fill,
+        minmax(260px, 1fr)
+    );
+    align-items: stretch;
+    gap: 24px;
+}
+
+/* Card */
+
+.catalogo-card {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    border: 1px solid #41464f;
+    border-radius: 14px;
+    background: #202329;
+    box-shadow: 0 8px 28px rgba(0, 0, 0, 0.25);
+    transition:
+        transform 0.2s,
+        border-color 0.2s,
+        box-shadow 0.2s;
+}
+
+.catalogo-card:hover {
+    transform: translateY(-5px);
+    border-color: #ff6b00;
+    box-shadow: 0 14px 34px rgba(0, 0, 0, 0.38);
+}
+
+/* Imagem */
+
+.catalogo-imagem-container {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    overflow: hidden;
+    background: #181a1f;
+}
+
+.catalogo-card-imagem {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s;
+}
+
+.catalogo-card:hover .catalogo-card-imagem {
+    transform: scale(1.04);
+}
+
+.catalogo-sem-imagem {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: #8d929a;
+}
+
+.catalogo-sem-imagem span {
+    font-size: 50px;
+}
+
+.catalogo-sem-imagem p {
+    margin: 8px 0 0;
+    color: #8d929a;
+}
+/* Conteúdo do card */
+
+.catalogo-card-conteudo {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    padding: 20px;
+}
+
+.catalogo-card-conteudo h2 {
+    min-height: 52px;
+    margin: 0 0 8px;
+    color: #ffffff;
+    font-size: 21px;
+    line-height: 1.25;
+}
+
+.catalogo-categoria {
+    min-height: 20px;
+    margin: 0 0 20px;
+    color: #b6bac1;
+    font-size: 14px;
+}
+
+.catalogo-preco {
+    margin: 0 0 10px;
+    color: #ff7a1a;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.catalogo-estoque {
+    margin: 0 0 20px;
+    color: #e4e4e4;
+    font-weight: bold;
+}
+
+/* Botão do WhatsApp */
+
+.botao-whatsapp {
+    width: 100%;
+    min-height: 48px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    margin-top: auto;
+    padding: 12px 16px;
+
+    border-radius: 8px;
+
+    background: #25d366;
+    color: #ffffff;
+
+    text-align: center;
+    text-decoration: none;
+    font-weight: bold;
+
+    transition:
+        background 0.2s,
+        transform 0.2s;
+}
+
+.botao-whatsapp:hover {
+    background: #1fb859;
+    transform: scale(1.02);
+}
+
+/* Produto sem estoque */
+
+.botao-sem-estoque {
+    width: 100%;
+    min-height: 48px;
+
+    margin-top: auto;
+
+    border: 0;
+    border-radius: 8px;
+
+    background: #555b64;
+    color: #d5d5d5;
+
+    font-weight: bold;
+    cursor: not-allowed;
+}
+
+/* Catálogo vazio */
+
+.catalogo-vazio {
+    padding: 60px 20px;
+
+    border: 1px dashed #555b64;
+    border-radius: 12px;
+
+    text-align: center;
+
+    color: #b6bac1;
+}
+
+.catalogo-vazio[hidden] {
+    display: none;
+}
+
+.catalogo-vazio h2 {
+    margin: 0 0 10px;
+    color: #ffffff;
+}
+
+.catalogo-vazio p {
+    margin: 0;
+    color: #b6bac1;
+}
+
+/* Responsividade do catálogo */
+
+@media (max-width: 700px) {
+
+    .catalogo-container {
+        width: min(100% - 24px, 1200px);
+        padding-top: 24px;
+    }
+
+    .catalogo-cabecalho {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .catalogo-filtros {
+        grid-template-columns: 1fr;
+    }
+
+    .catalogo-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .botao-voltar {
+        width: 100%;
+    }
+}
+
+
+/* =====================================================
+   FAIZER3D - GALERIA DE FOTOS DO CATÁLOGO
+===================================================== */
+
+/* QUANTIDADE DE FOTOS NO CARD */
+.catalogo-imagem-container {
+    position: relative;
+}
+
+.catalogo-quantidade-fotos {
+    position: absolute;
+    right: 12px;
+    bottom: 12px;
+    padding: 7px 11px;
+    background: rgba(0, 0, 0, 0.78);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 20px;
+    color: #ffffff;
+    font-size: 13px;
+    font-weight: bold;
+    pointer-events: none;
+}
+
+/* BOTÃO VER PRODUTO */
+.botao-ver-produto {
+    width: 100%;
+    min-height: 46px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 10px;
+    padding: 12px 16px;
+    background: #ff6b00;
+    border: none;
+    border-radius: 8px;
+    color: #ffffff;
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: bold;
+    transition: background 0.2s, transform 0.2s;
+}
+
+.botao-ver-produto:hover {
+    background: #e85f00;
+    transform: translateY(-2px);
+}
+
+/* MODAL DO PRODUTO */
+.modal-produto {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 25px;
+}
+
+.modal-produto[hidden] {
+    display: none;
+}
+
+.modal-produto-fundo {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.88);
+    backdrop-filter: blur(5px);
+}
+
+.modal-produto-conteudo {
+    position: relative;
+    z-index: 1;
+    width: min(1000px, 95%);
+    max-height: 90vh;
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    overflow-y: auto;
+    background: #202329;
+    border: 1px solid #41464f;
+    border-radius: 16px;
+    box-shadow: 0 25px 70px rgba(0, 0, 0, 0.65);
+}
+
+/* BOTÃO FECHAR */
+.modal-produto-fechar {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    z-index: 10;
+    width: 42px;
+    height: 42px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    background: rgba(0, 0, 0, 0.75);
+    border: 1px solid #555b64;
+    border-radius: 50%;
+    color: #ffffff;
+    cursor: pointer;
+    font-size: 30px;
+    line-height: 1;
+    transition: background 0.2s, transform 0.2s;
+}
+
+.modal-produto-fechar:hover {
+    background: #ff6b00;
+    transform: scale(1.05);
+}
+
+/* ÁREA DA GALERIA */
+.modal-produto-galeria {
+    min-width: 0;
+    padding: 24px;
+    background: #181a1f;
+}
+
+/* IMAGEM PRINCIPAL */
+.modal-imagem-principal {
+    position: relative;
+    width: 100%;
+    height: 520px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    background: #111318;
+    border-radius: 12px;
+}
+
+.modal-imagem-principal img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+/* SETAS */
+.galeria-seta {
+    position: absolute;
+    top: 50%;
+    z-index: 5;
+    width: 44px;
+    height: 55px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transform: translateY(-50%);
+    padding: 0;
+    background: rgba(0, 0, 0, 0.70);
+    border: 1px solid rgba(255, 255, 255, 0.20);
+    border-radius: 8px;
+    color: #ffffff;
+    cursor: pointer;
+    font-size: 36px;
+    font-weight: bold;
+}
+
+.galeria-seta:hover {
+    background: #ff6b00;
+    border-color: #ff6b00;
+}
+
+.galeria-seta-esquerda {
+    left: 12px;
+}
+
+.galeria-seta-direita {
+    right: 12px;
+}
+
+/* CONTADOR */
+.contador-imagens {
+    margin-top: 10px;
+    color: #b6bac1;
+    text-align: center;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+/* MINIATURAS */
+.modal-miniaturas {
+    width: 100%;
+    display: flex;
+    gap: 10px;
+    margin-top: 14px;
+    padding: 2px 0 6px;
+    overflow-x: auto;
+}
+
+.modal-miniatura {
+    width: 75px;
+    height: 75px;
+    flex: 0 0 75px;
+    object-fit: cover;
+    border: 2px solid transparent;
+    border-radius: 8px;
+    opacity: 0.65;
+    cursor: pointer;
+}
+
+.modal-miniatura:hover {
+    opacity: 1;
+}
+
+.modal-miniatura.ativa {
+    opacity: 1;
+    border-color: #ff6b00;
+}
+
+/* INFORMAÇÕES DO PRODUTO */
+.modal-produto-informacoes {
+    display: flex;
+    flex-direction: column;
+    padding: 38px 30px 30px;
+}
+
+.modal-produto-categoria {
+    margin-bottom: 10px;
+    color: #ff7a1a;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.modal-produto-informacoes h2 {
+    margin: 0 0 18px;
+    color: #ffffff;
+    font-size: 30px;
+    line-height: 1.2;
+}
+
+.modal-produto-preco {
+    margin-bottom: 14px;
+    color: #ff6b00;
+    font-size: 32px;
+    font-weight: bold;
+}
+
+.modal-produto-estoque {
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #3a3f47;
+    color: #d5d5d5;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.modal-produto-observacoes {
+    margin-bottom: 25px;
+    color: #c6c6c6;
+    font-size: 15px;
+    line-height: 1.6;
+    white-space: pre-line;
+}
+
+.botao-whatsapp-produto {
+    width: 100%;
+    min-height: 50px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: auto;
+    padding: 13px 18px;
+    background: #25d366;
+    border-radius: 8px;
+    color: #ffffff;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: bold;
+    transition: background 0.2s, transform 0.2s;
+}
+
+.botao-whatsapp-produto:hover {
+    background: #1fb859;
+    transform: translateY(-2px);
+}
+
+/* RESPONSIVIDADE - TABLET */
+@media (max-width: 850px) {
+    .modal-produto {
+        padding: 15px;
+    }
+
+    .modal-produto-conteudo {
+        width: min(650px, 100%);
+        grid-template-columns: 1fr;
+        max-height: 94vh;
+    }
+
+    .modal-produto-galeria {
+        padding: 18px;
+    }
+
+    .modal-imagem-principal {
+        height: 430px;
+    }
+
+    .modal-produto-informacoes {
+        padding: 25px;
+    }
+}
+
+/* RESPONSIVIDADE - CELULAR */
+@media (max-width: 550px) {
+    .modal-produto {
+        padding: 0;
+        align-items: flex-start;
+    }
+
+    .modal-produto-conteudo {
+        width: 100%;
+        min-height: 100vh;
+        max-height: 100vh;
+        grid-template-columns: 1fr;
+        border: none;
+        border-radius: 0;
+    }
+
+    .modal-produto-galeria {
+        padding: 12px;
+    }
+
+    .modal-imagem-principal {
+        height: 380px;
+        border-radius: 8px;
+    }
+
+    .modal-produto-fechar {
+        top: 10px;
+        right: 10px;
+        width: 40px;
+        height: 40px;
+    }
+
+    .galeria-seta {
+        width: 38px;
+        height: 48px;
+        font-size: 30px;
+    }
+
+    .galeria-seta-esquerda {
+        left: 7px;
+    }
+
+    .galeria-seta-direita {
+        right: 7px;
+    }
+
+    .modal-miniatura {
+        width: 62px;
+        height: 62px;
+        flex-basis: 62px;
+    }
+
+    .modal-produto-informacoes {
+        padding: 22px 18px 30px;
+    }
+
+    .modal-produto-informacoes h2 {
+        font-size: 25px;
+    }
+
+    .modal-produto-preco {
+        font-size: 28px;
+    }
+
+    .botao-whatsapp-produto {
+        min-height: 50px;
+    }
+}
